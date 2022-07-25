@@ -1,7 +1,10 @@
 import './App.css';
 import React, {useState, useEffect} from "react";
 import alanBtn from '@alan-ai/alan-sdk-web';
-
+import Button from '@mui/material/Button';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 
 function App() {
   useEffect(() => {
@@ -16,9 +19,9 @@ function App() {
 
   }, []);
   return (
-    <div className="App">
-      <h1>AlanAI Appointment App</h1>
-    </div>
+    <LocalizationProvider dateAdapter={AdapterMoment}>
+      <CalendarPicker></CalendarPicker>
+    </LocalizationProvider>
   );
 }
 
