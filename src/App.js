@@ -5,6 +5,11 @@ import Button from '@mui/material/Button';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import FullCalendar from '@fullcalendar/react' // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import { alignProperty } from '@mui/material/styles/cssUtils';
+import interactionPlugin from '@fullcalendar/interaction';
+import Calendar from './Calendar/Calendar'
 
 function App() {
   useEffect(() => {
@@ -18,10 +23,14 @@ function App() {
     });
 
   }, []);
+
+  function handleClick(arg) {
+    alert(arg.dateStr)
+    console.log("Clicked!")
+  }
+
   return (
-    <LocalizationProvider dateAdapter={AdapterMoment}>
-      <CalendarPicker></CalendarPicker>
-    </LocalizationProvider>
+    <Calendar />
   );
 }
 
