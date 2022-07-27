@@ -1,15 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from "react";
 import alanBtn from '@alan-ai/alan-sdk-web';
-import Button from '@mui/material/Button';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import FullCalendar from '@fullcalendar/react' // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import { alignProperty } from '@mui/material/styles/cssUtils';
-import interactionPlugin from '@fullcalendar/interaction';
-import Calendar from './Calendar/Calendar'
+import Calendar from './Calendar/calendar'
 
 function App() {
   useEffect(() => {
