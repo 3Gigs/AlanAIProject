@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import alanBtn from '@alan-ai/alan-sdk-web';
-import reactLogo from './assets/react.svg'
-import AlanCalendar from './Calendar/calendar'
+import reactLogo from './assets/react.svg';
+import AlanCalendar from './Calendar/calendar';
+import Appointments from './Calendar/appointments';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +19,10 @@ function App() {
     });
 
   return (
-    <AlanCalendar />
+    <div className="App">
+      <Appointments />
+      <AlanCalendar />
+    </div>
   )
 }
 
