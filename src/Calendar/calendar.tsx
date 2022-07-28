@@ -10,12 +10,11 @@ import '../App.css';
 
 function Calendar()
 {
-  const count = useSelector((state: RootState) => state.calendarTest.value)
+  const events = useSelector((state: RootState) => state.calendarTest.value)
   const dispatch = useDispatch();
 
   function handleClick(arg: any) {
     //dispatch(addEvent());
-    alert("Clicked! Value: " + count);
   }
 
   function handleEventClick() {
@@ -29,7 +28,7 @@ function Calendar()
         plugins={[ dayGridPlugin, interactionPlugin ]}
         initialView="dayGridMonth"
         height={"95%"}
-        events={[{id: 'abcd', title: 'Test Event', start: '2022-07-27'}]}
+        events={events}
         dateClick={handleClick}
         eventClick={handleEventClick}
       />
