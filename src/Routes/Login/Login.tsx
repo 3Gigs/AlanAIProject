@@ -54,12 +54,6 @@ function AuthPage() {
 }
 
 function Login() {
-    const [isAuth, setIsAuth] = useState(false);
-
-    useEffect(() => {
-        setIsAuth(getAuth() ? true : false);
-    }, [isAuth]);
-
     if(getAuth() !== null) {
         return (
             <Navigate to="/dashboard" />

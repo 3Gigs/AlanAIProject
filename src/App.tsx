@@ -4,7 +4,6 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 import reactLogo from './assets/react.svg';
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
-import { RequireAuth } from './Components/RequireAuth';
 import Login from "./Routes/Login/Login"
 
 function App() {
@@ -26,11 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={
-          <RequireAuth>
-            <Dashboard /> 
-          </RequireAuth>
-        } />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   )
