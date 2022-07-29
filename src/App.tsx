@@ -4,7 +4,7 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 import reactLogo from './assets/react.svg';
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
-import { RequireAuth } from './Utils/RequireAuth';
+import { RequireAuth } from './Components/RequireAuth';
 import Login from "./Routes/Login/Login"
 
 function App() {
