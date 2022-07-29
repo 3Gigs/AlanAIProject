@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import alanBtn from '@alan-ai/alan-sdk-web';
 import reactLogo from './assets/react.svg';
-import AlanCalendar from './Calendar/calendar';
-import Appointments from './Calendar/appointments';
+import Home from "./Routes/Home/Home";
+import Dashboard from "./Routes/Dashboard/Dashboard";
+import { RequireAuth } from './Utils/RequireAuth';
+import Login from "./Routes/Login/Login"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,10 +22,17 @@ function App() {
     });
 
   return (
-    <div className="App">
-      <Appointments />
-      <AlanCalendar />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={
+          <RequireAuth>
+            <Dashboard /> 
+          </RequireAuth>
+        } />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
