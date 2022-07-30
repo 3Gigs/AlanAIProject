@@ -26,6 +26,7 @@ function App() {
       <Routes>
         <Route element={<Navi />}>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />}/>
           <Route path="/dashboard" element={<PrivateRoute RouteComponent={Dashboard} />} />
         </Route>
       </Routes>

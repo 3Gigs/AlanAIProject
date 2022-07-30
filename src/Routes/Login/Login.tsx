@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from '../../main';
 
 function AuthPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const auth = getAuth(firebaseApp);
+
+    function toDashboard() {
+        navigate(0);
+        navigate("/dashboard");
+    }
+
+    useEffect(() => {
+        const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
+        if(isAuth) {
+            toDashboard();
+        }
+    }, []);
 
     async function authenticate() {
-        const auth = getAuth(firebaseApp);
-
         await signInWithEmailAndPassword(auth, email, password)
             .then(credential => {
                 sessionStorage.setItem('AlanAIAuthToken', credential.user.refreshToken)
-                navigate("/dashboard");
+                toDashboard();
             })
             .catch(e => {
                 const code = e.code;
@@ -23,12 +34,10 @@ function AuthPage() {
     }
 
     async function signUp() {
-        const auth = getAuth(firebaseApp);
-
         await createUserWithEmailAndPassword(auth, email, password)
             .then(credential => {
                 sessionStorage.setItem('AlanAIAuthToken', credential.user.refreshToken)
-                navigate("/dashboard");
+                toDashboard();
             })
             .catch(e => {
                 const code = e.code;
