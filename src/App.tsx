@@ -4,6 +4,7 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
 import Login from "./Routes/Login/Login";
+import Logout from "./Routes/Logout/Logout";
 import Navi from "./Routes/Navbar/Navi";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,6 +26,7 @@ function App() {
         <Route element={<Navi />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />}/>
+          <Route path="/logout" element={<Logout />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
