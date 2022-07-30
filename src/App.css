@@ -2,7 +2,6 @@
   margin-top: 5px;
   margin-right: 5px;
   user-select: none;
-  flex: 3 0 75%
 }
 
 .App {
@@ -15,6 +14,11 @@
 .Appointments {
   margin: 5px 20px 5px 5px;
   padding: 10px;
-  flex: 1 1;
-  background-color: lightblue;
+  max-width: 100px;
+  flex: 1 0;
+}
+
+.AddAppointmentbox {
+  margin-top: 5px;
+  padding: 10px;
 }
