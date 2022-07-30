@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from '../../main';
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function AuthPage() {
     const [email, setEmail] = useState("");
@@ -39,24 +42,31 @@ function AuthPage() {
             });
     }
 
-    return ( 
+    return (
         isAuth ?
             <Navigate to="/dashboard" /> :
-            <div>
-                <h1>Welcome to AlanAppointment!</h1> 
-                    <label>
-                        Email:
-                        <input type="text" name="username" onChange={e => setEmail(e.target.value)} />
-                    </label>
-                    <br />
-                    <label>
-                        Password:
-                        <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
-                    </label>
-                    <br />
-                    <button onClick={authenticate}>Login</button>
-                    <button onClick={signUp}>Sign up</button>
-            </div> 
+            <div className="d-flex justify-content-center Login">
+                <Card className="p-3 mt-1">
+                    <h1>Welcome to AlanAppointment!</h1>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="john@example.com" />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </Card>
+            </div>
     );
 }
 
