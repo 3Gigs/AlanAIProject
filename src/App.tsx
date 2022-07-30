@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import alanBtn from '@alan-ai/alan-sdk-web';
-import reactLogo from './assets/react.svg';
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
 import Login from "./Routes/Login/Login";
 import Navi from "./Routes/Navbar/Navi";
-import PrivateRoute from "./Routes/PrivateRoute/PrivateRoute";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
