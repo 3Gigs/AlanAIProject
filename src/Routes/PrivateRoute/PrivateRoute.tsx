@@ -13,6 +13,7 @@ function PrivateRoute({ RouteComponent }: Props) {
     const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
 
     if(isAuth) {
+        alert(isAuth);
         return <RouteComponent />
     }
     else {

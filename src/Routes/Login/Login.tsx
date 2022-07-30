@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from '../../main';
 
@@ -7,19 +7,13 @@ function AuthPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
     const auth = getAuth(firebaseApp);
 
     function toDashboard() {
         navigate(0);
         navigate("/dashboard");
     }
-
-    useEffect(() => {
-        const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
-        if(isAuth) {
-            toDashboard();
-        }
-    }, []);
 
     async function authenticate() {
         await signInWithEmailAndPassword(auth, email, password)
@@ -45,22 +39,24 @@ function AuthPage() {
             });
     }
 
-    return (
-        <div>
-            <h1>Welcome to AlanAppointment!</h1> 
-                <label>
-                    Email:
-                    <input type="text" name="username" onChange={e => setEmail(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Password:
-                    <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <br />
-                <button onClick={authenticate}>Login</button>
-                <button onClick={signUp}>Sign up</button>
-        </div>
+    return ( 
+        isAuth ?
+            <Navigate to="/dashboard" /> :
+            <div>
+                <h1>Welcome to AlanAppointment!</h1> 
+                    <label>
+                        Email:
+                        <input type="text" name="username" onChange={e => setEmail(e.target.value)} />
+                    </label>
+                    <br />
+                    <label>
+                        Password:
+                        <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
+                    </label>
+                    <br />
+                    <button onClick={authenticate}>Login</button>
+                    <button onClick={signUp}>Sign up</button>
+            </div> 
     );
 }
 

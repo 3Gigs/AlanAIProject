@@ -27,7 +27,7 @@ function App() {
         <Route element={<Navi />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />}/>
-          <Route path="/dashboard" element={<PrivateRoute RouteComponent={Dashboard} />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

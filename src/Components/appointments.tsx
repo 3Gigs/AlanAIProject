@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addEvent, CalendarEvent } from './calendarSlice';
+import Button from "react-bootstrap/Button";
 import '../App.css';
 
 function appointments() {
@@ -18,7 +19,7 @@ function appointments() {
         <div className='Appointments'>
             <h1>Appointments</h1>
             <hr />
-            <button onClick={() => eventDispatch(addEvent(askEvent()))}>Add Event</button>
+            <Button variant={"primary"} onClick={() => eventDispatch(addEvent(askEvent()))}>Add Event</Button>
         </div>
     );
 }
