@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Navigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseApp } from '../../main';
 
 function AuthPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function authenticate() {
-        const auth = getAuth();
+        const auth = getAuth(firebaseApp);
 
-        signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
             .then(credential => {
-                
+                sessionStorage.setItem('AlanAIAuthToken', credential.user.refreshToken)
+                navigate("/dashboard");
             })
             .catch(e => {
                 const code = e.code;
@@ -20,11 +23,12 @@ function AuthPage() {
     }
 
     async function signUp() {
-        const auth = getAuth();
+        const auth = getAuth(firebaseApp);
 
-        createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
             .then(credential => {
-
+                sessionStorage.setItem('AlanAIAuthToken', credential.user.refreshToken)
+                navigate("/dashboard");
             })
             .catch(e => {
                 const code = e.code;
@@ -35,9 +39,8 @@ function AuthPage() {
     return (
         <div>
             <h1>Welcome to AlanAppointment!</h1> 
-            <form onSubmit={authenticate}>
                 <label>
-                    Username:
+                    Email:
                     <input type="text" name="username" onChange={e => setEmail(e.target.value)} />
                 </label>
                 <br />
@@ -48,20 +51,8 @@ function AuthPage() {
                 <br />
                 <button onClick={authenticate}>Login</button>
                 <button onClick={signUp}>Sign up</button>
-            </form>
         </div>
     );
 }
 
-function Login() {
-    if(getAuth() !== null) {
-        return (
-            <Navigate to="/dashboard" />
-        )
-    }
-    else {
-        return <AuthPage />
-    }
-}
-
-export default Login;
+export default AuthPage;

@@ -4,11 +4,12 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 import reactLogo from './assets/react.svg';
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
-import Login from "./Routes/Login/Login"
+import Login from "./Routes/Login/Login";
+import Navi from "./Routes/Navbar/Navi";
+import PrivateRoute from "./Routes/PrivateRoute/PrivateRoute";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   useEffect(() => {
     alanBtn({
         key: 'c8fedc2d2a8f2e45c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage',
@@ -23,9 +24,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<Navi />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<PrivateRoute RouteComponent={Dashboard} />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
