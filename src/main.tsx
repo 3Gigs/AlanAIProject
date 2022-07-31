@@ -25,7 +25,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseDB = getFirestore(firebaseApp);
-const getUser = (auth: Auth) => new Promise<User | null>((resolve, reject) => {
+const initializeAuth = (auth: Auth) => new Promise<User | null>((resolve, reject) => {
   const unsubscribe = auth.onAuthStateChanged(user => {
     unsubscribe();
     resolve(user);
@@ -33,7 +33,7 @@ const getUser = (auth: Auth) => new Promise<User | null>((resolve, reject) => {
 });
 
 (async () => {
-  await getUser(getAuth(firebaseApp));
+  await initializeAuth(getAuth(firebaseApp));
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
