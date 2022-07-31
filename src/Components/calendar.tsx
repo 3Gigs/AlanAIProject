@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '@fullcalendar/react/dist/vdom';
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
