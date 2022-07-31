@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { Auth, getAuth, User } from '@firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,12 +20,13 @@ const firebaseConfig = {
   projectId: "alanappointment-1898a",
   storageBucket: "alanappointment-1898a.appspot.com",
   messagingSenderId: "481710126514",
+  databaseURL: "https://alanappointment-1898a-default-rtdb.firebaseio.com/",
   appId: "1:481710126514:web:b8616fd39f1b076dfb20ab",
 };
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
-export const firebaseDB = getFirestore(firebaseApp);
+export const db = getDatabase(firebaseApp);
 const initializeAuth = (auth: Auth) => new Promise<User | null>((resolve, reject) => {
   const unsubscribe = auth.onAuthStateChanged(user => {
     unsubscribe();

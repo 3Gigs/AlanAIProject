@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, Navigate } from 'react-router-dom'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useState } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { set, ref } from '@firebase/database';
 import { firebaseApp } from '../../main';
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { db } from "../../main";
 
 function AuthPage() {
     const [email, setEmail] = useState("");
@@ -23,7 +25,6 @@ function AuthPage() {
     async function authenticate() {
         await signInWithEmailAndPassword(auth, email, password)
             .then(credential => {
-                sessionStorage.setItem('AlanAIAuthToken', credential.user.refreshToken)
                 toDashboard();
             })
             .catch(e => {
@@ -36,12 +37,12 @@ function AuthPage() {
     async function signUp() {
         await createUserWithEmailAndPassword(auth, email, password)
             .then(credential => {
-                sessionStorage.setItem('AlanAIAuthToken', credential.user.refreshToken)
                 toDashboard();
             })
             .catch(e => {
                 const code = e.code;
                 const msg = e.message;
+                alert(msg);
             });
     }
 
@@ -66,6 +67,9 @@ function AuthPage() {
                         </Form.Group>
                         <Button variant="primary" onClick={authenticate}>
                             Login
+                        </Button>
+                        <Button variant="success" className="mx-2" onClick={signUp}>
+                            Sign Up
                         </Button>
                     </Form>
                 </Card>

@@ -10,7 +10,15 @@ import { useEffect } from 'react';
 
 function Navi() {
     const auth = getAuth(firebaseApp);
-    const email = auth?.currentUser?.email;
+    const [email, setEmail] = useState("");
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user?.email) {
+                setEmail(user.email);
+            }
+        });
+    }, [])
 
     return (
         <div>
