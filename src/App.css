@@ -1,18 +1,28 @@
 .Calendar {
+  margin-top: 5px;
+  margin-right: 5px;
+  max-width: calc(100% - 400px);
   user-select: none;
-  flex: 3 0 75%
 }
 
 .App {
   display: flex;
   flex-flow: row nowrap;
   flex: 1;
-  height: 98vh;
+  height: 93vh;
 }
 
 .Appointments {
   margin: 5px 20px 5px 5px;
   padding: 10px;
-  flex: 1 1;
-  background-color: lightblue;
+  flex: 1 0;
+}
+
+.AddAppointmentbox {
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.icon-right-spacing {
+  margin-right: 5px;
 }

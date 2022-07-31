@@ -22,7 +22,7 @@ function Calendar()
   }
 
   return (
-    <div className={'Calendar'}>
+    <div className={'Calendar w-100'}>
       <FullCalendar
         headerToolbar={{start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next"}}
         plugins={[ dayGridPlugin, interactionPlugin ]}

@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import alanBtn from '@alan-ai/alan-sdk-web';
-import reactLogo from './assets/react.svg';
-import AlanCalendar from './Calendar/calendar';
-import Appointments from './Calendar/appointments';
+import Home from "./Routes/Home/Home";
+import Dashboard from "./Routes/Dashboard/Dashboard";
+import Login from "./Routes/Login/Login";
+import Logout from "./Routes/Logout/Logout";
+import Navi from "./Routes/Navbar/Navi";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   useEffect(() => {
     alanBtn({
         key: 'c8fedc2d2a8f2e45c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage',
@@ -19,10 +21,16 @@ function App() {
     });
 
   return (
-    <div className="App">
-      <Appointments />
-      <AlanCalendar />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Navi />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />}/>
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
