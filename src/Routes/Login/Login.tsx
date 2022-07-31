@@ -27,6 +27,7 @@ function AuthPage() {
             .catch(e => {
                 const code = e.code;
                 const msg = e.message;
+                alert(msg);
             });
     }
 
@@ -51,7 +52,7 @@ function AuthPage() {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="john@example.com" />
+                            <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
                             </Form.Text>
@@ -59,10 +60,10 @@ function AuthPage() {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" onClick={authenticate}>
+                            Login
                         </Button>
                     </Form>
                 </Card>
