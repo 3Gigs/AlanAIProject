@@ -25,9 +25,7 @@ function Calendar()
     const query = ref(db, `users/${email.replace(".", "DOT")}`);
     onValue(query, (snapshot) => {
       const events = Object.values(snapshot.val().events);
-      console.log(events);
       for(let event of Object.values(events)) {
-        console.log(event);
         dispatch(addEvent(event));
       }
     });

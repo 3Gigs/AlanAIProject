@@ -9,7 +9,6 @@ import { getAuth } from "firebase/auth";
 function Dashboard() {
   const auth = getAuth(firebaseApp);
   const isAuth = auth?.currentUser;
-  console.log(isAuth);
 
   return (
     isAuth ?

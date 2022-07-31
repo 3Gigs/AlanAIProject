@@ -22,15 +22,6 @@ function AddAppointmentBox() {
         throw new Error("Email not found!");
     }
 
-    // TODO: Remove this
-    // function askEvent(): CalendarEvent {
-    //     return {
-    //         title: 'test add event',
-    //         start: '2022-07-27',
-    //         end: '2022-07-29'
-    //     }
-    // }
-
     return (
         <Card className="AddAppointmentbox">
             <Form>
