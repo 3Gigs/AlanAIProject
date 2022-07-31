@@ -6,7 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import  { getFirestore, initializeFirestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore } from "firebase/firestore";
+import { Auth, getAuth, User } from '@firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,9 +25,19 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseDB = getFirestore(firebaseApp);
+const getUser = (auth: Auth) => new Promise<User | null>((resolve, reject) => {
+  const unsubscribe = auth.onAuthStateChanged(user => {
+    unsubscribe();
+    resolve(user);
+  }, reject)
+});
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+(async () => {
+  await getUser(getAuth(firebaseApp));
+
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
       <App />
     </Provider>
-)
+  )
+})();

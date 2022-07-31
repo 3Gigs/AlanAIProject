@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 import { Navigate } from 'react-router-dom';
 import AlanCalendar from '../../Components/calendar';
 import Appointments from '../../Components/appointments';
+import { firebaseApp } from "../../main";
+import { getAuth } from "firebase/auth";
 
 function Dashboard() {
-  const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
+  const auth = getAuth(firebaseApp);
+  const isAuth = auth?.currentUser;
+  console.log(isAuth);
 
   return (
     isAuth ?

@@ -10,8 +10,10 @@ function AuthPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
+    //const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
     const auth = getAuth(firebaseApp);
+    const isAuth = auth?.currentUser;
+    console.log(isAuth);
 
     function toDashboard() {
         navigate(0);
