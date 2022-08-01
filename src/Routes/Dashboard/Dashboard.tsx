@@ -1,22 +1,20 @@
-import { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Navigate } from 'react-router-dom';
-import AlanCalendar from '../../Components/calendar';
-import Appointments from '../../Components/appointments';
+import { Navigate } from "react-router-dom";
+import AlanCalendar from "../../Components/calendar";
+import Appointments from "../../Components/appointments";
 import { firebaseApp } from "../../main";
 import { getAuth } from "firebase/auth";
 
-function Dashboard() {
+function Dashboard () {
   const auth = getAuth(firebaseApp);
   const isAuth = auth?.currentUser;
 
   return (
-    isAuth ?
-      <div className="App">
+    isAuth
+      ? <div className="App">
         <Appointments />
         <AlanCalendar />
-      </div> :
-      <Navigate to="/login" />
+      </div>
+      : <Navigate to="/login" />
   );
 }
 

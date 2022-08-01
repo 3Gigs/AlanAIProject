@@ -1,24 +1,20 @@
-import { useEffect } from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import Login from '../Login/Login';
-import { firebaseApp } from '../../main';
-import { getAuth } from "firebase/auth";
+import Login from "../Login/Login";
 
 interface Props {
+    // eslint-disable-next-line no-undef
     RouteComponent: React.ComponentType;
     path?: string;
 }
 
-function PrivateRoute({ RouteComponent }: Props) {
-    const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
+function PrivateRoute ({ RouteComponent }: Props) {
+  const isAuth = !!sessionStorage.getItem("AlanAIAuthToken");
 
-    if(isAuth) {
-        alert(isAuth);
-        return <RouteComponent />
-    }
-    else {
-        return <Login />
-    }
+  if (isAuth) {
+    alert(isAuth);
+    return <RouteComponent />;
+  } else {
+    return <Login />;
+  }
 }
 
 export default PrivateRoute;

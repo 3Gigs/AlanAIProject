@@ -1,67 +1,58 @@
-import { useSelector, useDispatch } from 'react-redux';
-import '@fullcalendar/react/dist/vdom';
-import FullCalendar from '@fullcalendar/react'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction';
-import { RootState } from '../reduxStore';
-import { addEvent } from './calendarSlice';
-import '../App.css';
-import { useEffect, useState } from 'react';
-import { db, firebaseApp } from '../main';
-import { getAuth } from '@firebase/auth';
-import { onValue, ref } from '@firebase/database';
+import "@fullcalendar/react/dist/vdom";
+import FullCalendar from "@fullcalendar/react"; // must go before plugins
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import interactionPlugin from "@fullcalendar/interaction";
+import "../App.css";
+import { useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "../reduxStore";
+import { getEventsThunk } from "./calendarSlice";
 
 export interface ICalendarEvent {
   end: string;
-  start: Date;
-  title: Date;
+  id: string;
+  start: string;
+  title: string;
 }
 
-function isCalendarEvent(obj: unknown): obj is ICalendarEvent {
+export function isCalendarEvent (obj: unknown): obj is ICalendarEvent {
   const event = obj as ICalendarEvent;
   return (
-    event.end !== undefined && 
-    event.start !== undefined && 
+    event.end !== undefined &&
+    event.id !== undefined &&
+    event.start !== undefined &&
     event.title !== undefined
   );
 }
 
-function Calendar() {
-  const [events, setEvents] = useState(new Array<ICalendarEvent>);
-  const dispatch = useDispatch();
+function Calendar () {
+  const events = useAppSelector((state) => state.calendarTest.value);
+  const eventsDispatch = useAppDispatch();
+  const calendarRef = useRef() as any;
 
   useEffect(() => {
-    const auth = getAuth(firebaseApp);
-    const email = auth.currentUser?.email;
-    if (!email) {
-      throw new Error("Email not found!");
-    }
-    const query = ref(db, `users/${email.replace(".", "DOT")}`);
-
-    onValue(query, (snapshot) => {
-      const events = Object.values(snapshot.val().events);
-      setEvents([]);
-      for (let event of Object.values(events)) {
-        if(isCalendarEvent(event)) {
-          setEvents((e) => [...e, event as ICalendarEvent]);
-        }
-      }
-    });
+    eventsDispatch(getEventsThunk());
   }, []);
 
-  function handleClick(arg: any) {
-    //dispatch(addEvent());
+  function handleClick (arg: any) {
+    // dispatch(addEvent());
+    // dispatch(deleteEvent());
   }
 
-  function handleEventClick() {
+  function handleEventClick (arg: any) {
     alert("Event clicked!");
+    // console.log(arg);
+    // const calApi = calendarRef.current.getApi();
+    // const id = arg.event._def.publicId;
+
+    arg.event.remove();
   }
 
   return (
-    <div className={'Calendar w-100'}>
+    <div className={"Calendar w-100"}>
       <FullCalendar
         headerToolbar={{ start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next" }}
         plugins={[dayGridPlugin, interactionPlugin]}
+        ref={calendarRef}
         initialView="dayGridMonth"
         height={"95%"}
         events={events}

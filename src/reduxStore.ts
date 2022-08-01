@@ -1,11 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
-import calendarSlice from "./Components/calendarSlice"
+import { configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import calendarReducer from "./Components/calendarSlice";
 
 export const store = configureStore({
-    reducer: {
-        calendarTest: calendarSlice,
-    },
-})
+  reducer: {
+    calendarTest: calendarReducer
+  }
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+// Use throughout your app instead of plain `useDispatch` and `useSelector`
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

@@ -1,55 +1,51 @@
-import { useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { set, ref } from '@firebase/database';
-import { firebaseApp } from '../../main';
+import { firebaseApp } from "../../main";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { db } from "../../main";
 
-function AuthPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-    //const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
-    const auth = getAuth(firebaseApp);
-    const isAuth = auth?.currentUser;
-    console.log(isAuth);
+function AuthPage () {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  // const isAuth = sessionStorage.getItem('AlanAIAuthToken') ? true : false;
+  const auth = getAuth(firebaseApp);
+  const isAuth = auth?.currentUser;
+  console.log(isAuth);
 
-    function toDashboard() {
-        navigate(0);
-        navigate("/dashboard");
-    }
+  function toDashboard () {
+    navigate(0);
+    navigate("/dashboard");
+  }
 
-    async function authenticate() {
-        await signInWithEmailAndPassword(auth, email, password)
-            .then(credential => {
-                toDashboard();
-            })
-            .catch(e => {
-                const code = e.code;
-                const msg = e.message;
-                alert(msg);
-            });
-    }
+  async function authenticate () {
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(credential => {
+        toDashboard();
+      })
+      .catch(e => {
+        const msg = e.message;
+        alert(msg);
+      });
+  }
 
-    async function signUp() {
-        await createUserWithEmailAndPassword(auth, email, password)
-            .then(credential => {
-                toDashboard();
-            })
-            .catch(e => {
-                const code = e.code;
-                const msg = e.message;
-                alert(msg);
-            });
-    }
+  async function signUp () {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then(credential => {
+        toDashboard();
+      })
+      .catch(e => {
+        const msg = e.message;
+        alert(msg);
+      });
+  }
 
-    return (
-        isAuth ?
-            <Navigate to="/dashboard" /> :
-            <div className="d-flex justify-content-center Login">
+  return (
+    isAuth
+      ? <Navigate to="/dashboard" />
+      : <div className="d-flex justify-content-center Login">
                 <Card className="p-3 mt-1">
                     <h1>Welcome to AlanAppointment!</h1>
                     <Form>
@@ -57,7 +53,7 @@ function AuthPage() {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" />
                             <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
+                                We&aposll never share your email with anyone else.
                             </Form.Text>
                         </Form.Group>
 
@@ -74,7 +70,7 @@ function AuthPage() {
                     </Form>
                 </Card>
             </div>
-    );
+  );
 }
 
 export default AuthPage;
