@@ -1,13 +1,8 @@
 import { getAuth } from '@firebase/auth';
 import { onValue, ref, set } from '@firebase/database';
-import { uuidv4 } from '@firebase/util';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { db, firebaseApp } from '../main';
 import { ICalendarEvent, isCalendarEvent } from './calendar';
-
-export interface PayloadXtraInfo {
-    email: string;
-};
 
 export enum LoadStatus {
     IDLE,
@@ -31,10 +26,12 @@ const getEvents = () => new Promise<Array<ICalendarEvent>>((resolve, reject) => 
 
     const unsub = onValue(query, (snapshot) => {
         unsub();
-        const eventsObj = Object.values(snapshot.val().events);
-        for (let event of Object.values(eventsObj)) {
-            if (isCalendarEvent(event)) {
-                events = [...events, event as ICalendarEvent];
+        if(snapshot?.val()?.events) {
+            const eventsObj = Object.values(snapshot.val().events);
+            for (let event of Object.values(eventsObj)) {
+                if (isCalendarEvent(event)) {
+                    events = [...events, event as ICalendarEvent];
+                }
             }
         }
         resolve(events);
@@ -54,12 +51,16 @@ const calendarSlice = createSlice({
     name: 'calendarSlice',
     initialState,
     reducers: {
-        addEvent: (state, action: PayloadAction<ICalendarEvent & PayloadXtraInfo>) => {
+        addEvent: (state, action: PayloadAction<ICalendarEvent>) => {
             state.value.push(action.payload);
-            const id = uuidv4();
-            set(ref(db, `users/${action.payload.email.replace(".", "DOT")}/events/${id}`), {
+            const auth = getAuth(firebaseApp);
+            const email = auth.currentUser?.email;
+            if (!email) {
+                throw new Error("Email not found!");
+            }
+            set(ref(db, `users/${email.replace(".", "DOT")}/events/${action.payload.id}`), {
                 title: action.payload.title,
-                id,
+                id: action.payload.id,
                 start: action.payload.start,
                 end: action.payload.end
             });

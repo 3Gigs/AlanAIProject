@@ -10,6 +10,8 @@ import '../App.css';
 import { getAuth } from '@firebase/auth';
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch } from '../reduxStore';
+import { ICalendarEvent } from './calendar';
+import { addEvent } from './calendarSlice';
 
 function AddAppointmentBox() {
     const [eventInfo, setEventInfo] = useState("");
@@ -41,6 +43,13 @@ function AddAppointmentBox() {
                     start: startDate.toISOString(),
                     end: endDate.toISOString()
                 });
+                const payload: ICalendarEvent = {
+                    title: eventInfo,
+                    id,
+                    start: startDate.toISOString(),
+                    end: endDate.toISOString()
+                }
+                eventDispatch(addEvent(payload));
             }
             }>Add Event</Button>
         </Card>

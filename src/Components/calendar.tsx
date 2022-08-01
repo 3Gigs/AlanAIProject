@@ -11,8 +11,8 @@ import { getEventsThunk } from './calendarSlice';
 export interface ICalendarEvent {
   end: string;
   id: string;
-  start: Date;
-  title: Date;
+  start: string;
+  title: string;
 }
 
 export function isCalendarEvent(obj: unknown): obj is ICalendarEvent {
