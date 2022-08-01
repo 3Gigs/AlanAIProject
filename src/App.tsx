@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import alanBtn from '@alan-ai/alan-sdk-web';
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import alanBtn from "@alan-ai/alan-sdk-web";
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
 import Login from "./Routes/Login/Login";
 import Logout from "./Routes/Logout/Logout";
 import Navi from "./Routes/Navbar/Navi";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+function App () {
   useEffect(() => {
     alanBtn({
-        key: 'c8fedc2d2a8f2e45c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage',
-        onCommand: (commandData: any) => {
-          if (commandData.command === 'go:back') {
-            // Call the client code that will react to the received command
-          }
+      key: "c8fedc2d2a8f2e45c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage",
+      onCommand: (commandData: any) => {
+        if (commandData.command === "go:back") {
+          // Call the client code that will react to the received command
         }
-      });
+      }
     });
+  });
 
   return (
     <BrowserRouter>
@@ -31,7 +31,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
