@@ -35,15 +35,7 @@ function AddAppointmentBox() {
                 </Form.Group>
             </Form>
             <Button variant={"success"} onClick={() => {
-                eventDispatch(
-                    addEvent(
-                        {
-                            title: eventInfo,
-                            start: startDate.toISOString(),
-                            end: endDate.toISOString()
-                        }
-                    )
-                );
+                console.log(eventInfo);
                 alert(email);
                 set(ref(db, `users/${email.replace(".", "DOT")}/events/${uuidv4()}`), {
                     title: eventInfo,

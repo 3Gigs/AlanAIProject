@@ -22,6 +22,12 @@ export const calendarSlice = createSlice({
         addEvent: (state, action: PayloadAction<CalendarEvent>) => {
            state.value.push(action.payload);
         },
+        setEvents: (state, action: PayloadAction<CalendarEvent[]>) => {
+            state.value = action.payload;
+        },
+        deleteEvent: (state, action: PayloadAction<CalendarEvent>) => {
+            // To be implemented...
+        },
     },
 });
 

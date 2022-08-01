@@ -6,27 +6,45 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { RootState } from '../reduxStore';
 import { addEvent } from './calendarSlice';
 import '../App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { db, firebaseApp } from '../main';
 import { getAuth } from '@firebase/auth';
 import { onValue, ref } from '@firebase/database';
 
-function Calendar()
-{
-  const events = useSelector((state: RootState) => state.calendarTest.value)
+export interface ICalendarEvent {
+  end: string;
+  start: Date;
+  title: Date;
+}
+
+function isCalendarEvent(obj: unknown): obj is ICalendarEvent {
+  const event = obj as ICalendarEvent;
+  return (
+    event.end !== undefined && 
+    event.start !== undefined && 
+    event.title !== undefined
+  );
+}
+
+function Calendar() {
+  const [events, setEvents] = useState(new Array<ICalendarEvent>);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const auth = getAuth(firebaseApp);
     const email = auth.currentUser?.email;
-    if(!email) {
+    if (!email) {
       throw new Error("Email not found!");
     }
     const query = ref(db, `users/${email.replace(".", "DOT")}`);
+
     onValue(query, (snapshot) => {
       const events = Object.values(snapshot.val().events);
-      for(let event of Object.values(events)) {
-        dispatch(addEvent(event));
+      setEvents([]);
+      for (let event of Object.values(events)) {
+        if(isCalendarEvent(event)) {
+          setEvents((e) => [...e, event as ICalendarEvent]);
+        }
       }
     });
   }, []);
@@ -42,8 +60,8 @@ function Calendar()
   return (
     <div className={'Calendar w-100'}>
       <FullCalendar
-        headerToolbar={{start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next"}}
-        plugins={[ dayGridPlugin, interactionPlugin ]}
+        headerToolbar={{ start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next" }}
+        plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         height={"95%"}
         events={events}
