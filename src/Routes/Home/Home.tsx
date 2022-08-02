@@ -6,8 +6,8 @@ function Home () {
                 <h1 className="PromoText">Simple scheduling with Alan AI</h1>
             </div>
             <div className="PromoArt">
-                <img className="PromoArt_Clock" src="src\assets\promo_clock.svg" />
-                <img className="PromoArt_Calendar" src="src\assets\calendar_home.svg" />
+                <img className="PromoArt_Clock" src="/assets/promo_clock.svg" />
+                <img className="PromoArt_Calendar" src="/assets/calendar_home.svg" />
             </div>
         </div>
   );
