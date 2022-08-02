@@ -7,18 +7,28 @@
 
 .Home {
   display: flex;
-  height: 40vh;
+  color: white;
+  background-color: #0539ff;
+  margin: 20px;
+  padding: 0px;
+  border-radius: 10px;
+  flex: 1 1;
 }
 
 .PromoText {
   text-align: center;
-  margin: auto;
+  margin: 90px;
   flex: 1 1;
+}
+
+.PromoText_1 {
+  font-size: max(4vw, 50px);
 }
 
 .PromoArt {
   position: relative;
-  flex: 1 1;
+  flex: 1 2;
+  margin-top: 40px;
 }
 
 .PromoArt_Calendar {
@@ -35,6 +45,46 @@
   z-index: 2;
   position: absolute;
 }
+
+.PromoArt_Mic {
+  position: absolute;
+  left: 550px;
+  top: 350px;
+}
+
+@media (max-width: 800px) {
+  .Home {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    color: white;
+    background-color: #0539ff;
+  }
+
+  .PromoArt {
+    transform: scale(0.6);
+    position: relative;
+    top: -100px;
+    left: -50px;
+    flex: 1 2;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 1450px) {
+  .Home {
+    display: flex;
+    height: 40vh;
+    color: white;
+    background-color: #0539ff;
+  }
+
+  .PromoArt {
+    flex: 2 1;
+    transform: scale(0.6)
+  }
+}
+
 
 .App {
   display: flex;
