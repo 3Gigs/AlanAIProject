@@ -5,6 +5,37 @@
   user-select: none;
 }
 
+.Home {
+  display: flex;
+  height: 40vh;
+}
+
+.PromoText {
+  text-align: center;
+  margin: auto;
+  flex: 1 1;
+}
+
+.PromoArt {
+  position: relative;
+  flex: 1 1;
+}
+
+.PromoArt_Calendar {
+  top: 0px;
+  left: 0px;
+  width: 500px;
+  position: absolute;
+}
+
+.PromoArt_Clock {
+  width: 200px;
+  top: 220px;
+  left: 5px;
+  z-index: 2;
+  position: absolute;
+}
+
 .App {
   display: flex;
   flex-flow: row nowrap;
