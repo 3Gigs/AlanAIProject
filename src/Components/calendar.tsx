@@ -66,7 +66,7 @@ function Calendar () {
 
   return (
       <div className={"Calendar w-100"}>
-        <EventManageBox key={uuidv4()} visible={eventManagerVisible} x={eventManagerX} y={eventManagerY} event={currentEventInfo} calendarRef={calendarRef as React.MutableRefObject<FullCalendar>} />
+        <EventManageBox key={uuidv4()} visible={eventManagerVisible} x={eventManagerX} y={eventManagerY} event={currentEventInfo} onCloseClick={() => { setEventManagerVisible(false); }} />
         <FullCalendar
           headerToolbar={{ start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next" }}
           plugins={[dayGridPlugin, interactionPlugin]}
