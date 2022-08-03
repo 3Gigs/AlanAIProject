@@ -36,20 +36,24 @@ function AddAppointmentBox () {
                 </Form.Group>
             </Form>
             <Button variant={"success"} onClick={() => {
-              const id = uuidv4();
-              set(ref(db, `users/${email.replace(".", "DOT")}/events/${id}`), {
-                title: eventInfo,
-                id,
-                start: startDate.toISOString(),
-                end: endDate.toISOString()
-              });
-              const payload: ICalendarEvent = {
-                title: eventInfo,
-                id,
-                start: startDate.toISOString(),
-                end: endDate.toISOString()
-              };
-              eventDispatch(addEvent(payload));
+              if (!eventInfo && !startDate && !endDate) {
+                console.log("Please fully fill out appointment detail!");
+              } else {
+                const id = uuidv4();
+                set(ref(db, `users/${email.replace(".", "DOT")}/events/${id}`), {
+                  title: eventInfo,
+                  id,
+                  start: startDate.toISOString(),
+                  end: endDate.toISOString()
+                });
+                const payload: ICalendarEvent = {
+                  title: eventInfo,
+                  id,
+                  start: startDate.toISOString(),
+                  end: endDate.toISOString()
+                };
+                eventDispatch(addEvent(payload));
+              }
             }
             }>Add Event</Button>
         </Card>
