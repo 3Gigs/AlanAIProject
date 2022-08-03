@@ -67,9 +67,14 @@ const calendarSlice = createSlice({
         end: action.payload.end
       });
     },
-    deleteEvent: (state, action: PayloadAction<ICalendarEvent>) => {
-      console.log(action.payload);
-      // To be implemented...
+    deleteEvent: (state, action: PayloadAction<string>) => {
+      const auth = getAuth(firebaseApp);
+      const email = auth.currentUser?.email;
+      if (!email) {
+        throw new Error("Email not found!");
+      }
+      set(ref(db, `users/${email.replace(".", "DOT")}/events/${action.payload}`), null);
+      state.value = state.value.filter(e => e.id !== action.payload);
     },
     resetEvents: (state) => {
       return initialState;

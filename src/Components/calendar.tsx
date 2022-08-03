@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction";
 import "../App.css";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../reduxStore";
 import { getEventsThunk } from "./calendarSlice";
 import EventManageBox from "./EventManageBox";
@@ -29,7 +29,7 @@ export function isCalendarEvent (obj: unknown): obj is ICalendarEvent {
 function Calendar () {
   const events = useAppSelector((state) => state.calendarTest.value);
   const eventsDispatch = useAppDispatch();
-  const calendarRef = useRef() as any;
+  const calendarRef = useRef<FullCalendar>();
 
   const [eventManagerVisible, setEventManagerVisible] = useState(false);
   const [eventManagerX, setEventManagerX] = useState(0);
@@ -46,19 +46,13 @@ function Calendar () {
   }
 
   function handleEventClick (arg: any) {
-    // console.log(arg);
-    // const calApi = calendarRef.current.getApi();
-    // const id = arg.event._def.publicId;
     setEventManagerVisible(true);
     setEventManagerX(arg.jsEvent.screenX);
     setEventManagerY(arg.jsEvent.screenY);
-    console.log(arg.event._instance.range);
 
     if (!arg.event._def.publicId && !arg.event.id && !arg.event.title && !arg.event._instance.range.start && !arg.event._instance.range.end) {
       throw new Error("Invalid event!");
     }
-
-    console.log(arg.event.end);
 
     const event = {
       id: arg.event._def.publicId,
@@ -67,18 +61,16 @@ function Calendar () {
       end: (arg.event._instance.range.end as Date).toISOString()
     };
 
-    console.log(event);
-
     setCurrentEventInfo(event);
   }
 
   return (
       <div className={"Calendar w-100"}>
-        <EventManageBox key={uuidv4()} visible={eventManagerVisible} x={eventManagerX} y={eventManagerY} event={currentEventInfo} />
+        <EventManageBox key={uuidv4()} visible={eventManagerVisible} x={eventManagerX} y={eventManagerY} event={currentEventInfo} calendarRef={calendarRef as React.MutableRefObject<FullCalendar>} />
         <FullCalendar
           headerToolbar={{ start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next" }}
           plugins={[dayGridPlugin, interactionPlugin]}
-          ref={calendarRef}
+          ref={calendarRef as React.MutableRefObject<FullCalendar>}
           initialView="dayGridMonth"
           height={"95%"}
           events={events}
