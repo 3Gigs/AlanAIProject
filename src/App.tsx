@@ -11,8 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export const initAlanBtn = () => {
   if (!(window as any).alanBtnInstance) {
     (window as any).alanBtnInstance = alanBtn({
-      key: "93d40f793be48938c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage",
-      // Alt key: 9c762b628a6087547b2d24cde198197c2e956eca572e1d8b807a3e2338fdd0dc/stage
+      key: "9c762b628a6087547b2d24cde198197c2e956eca572e1d8b807a3e2338fdd0dc/stage",
       onCommand: (commandData: any) => {
         switch (commandData.command) {
           case "navigate:Dashboard":
