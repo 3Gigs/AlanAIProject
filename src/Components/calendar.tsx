@@ -39,15 +39,25 @@ function Calendar () {
   useEffect(() => {
     eventsDispatch(getEventsThunk());
     document.addEventListener("calendarCreateEvent", e => {
-      const event = e as CustomEvent<ICalendarEvent>;
+      const event = e as CustomEvent<unknown>;
 
-      if (!event.detail) {
-        console.error("Invalid calendarCreateEvent event data!");
+      function isPartialCalendarEvent (val: unknown): val is ICalendarEvent {
+        const eventInfo = val as ICalendarEvent;
+
+        return (
+          typeof eventInfo.start === "string" &&
+          typeof eventInfo.end === "string" &&
+          typeof eventInfo.title === "string"
+        );
+      }
+
+      if (isPartialCalendarEvent(event.detail)) {
+        event.detail.id = uuidv4();
+        eventsDispatch(addEvent(event.detail));
         return;
       }
 
-      event.detail.id = uuidv4();
-      eventsDispatch(addEvent(event.detail));
+      console.error("Invalid calendarCreateEvent event data!");
     });
   }, []);
 

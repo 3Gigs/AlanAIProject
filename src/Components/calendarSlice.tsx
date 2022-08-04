@@ -54,7 +54,6 @@ const calendarSlice = createSlice({
   initialState,
   reducers: {
     addEvent: (state, action: PayloadAction<ICalendarEvent>) => {
-      state.value.push(action.payload);
       const auth = getAuth(firebaseApp);
       const email = auth.currentUser?.email;
       if (!email) {
