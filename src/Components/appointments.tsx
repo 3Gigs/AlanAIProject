@@ -36,8 +36,8 @@ function AddAppointmentBox () {
                 </Form.Group>
             </Form>
             <Button variant={"success"} onClick={() => {
-              if (!eventInfo && !startDate && !endDate) {
-                console.log("Please fully fill out appointment detail!");
+              if (eventInfo.length <= 0 || !startDate || !endDate) {
+                alert("Please fully fill out appointment detail!");
               } else {
                 const id = uuidv4();
                 set(ref(db, `users/${email.replace(".", "DOT")}/events/${id}`), {

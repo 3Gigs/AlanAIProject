@@ -5,7 +5,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import "../App.css";
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../reduxStore";
-import { getEventsThunk } from "./calendarSlice";
+import { addEvent, getEventsThunk } from "./calendarSlice";
 import EventManageBox from "./EventManageBox";
 import { uuidv4 } from "@firebase/util";
 
@@ -19,10 +19,10 @@ export interface ICalendarEvent {
 export function isCalendarEvent (obj: unknown): obj is ICalendarEvent {
   const event = obj as ICalendarEvent;
   return (
-    event.end !== undefined &&
-    event.id !== undefined &&
-    event.start !== undefined &&
-    event.title !== undefined
+    typeof event.end === "string" &&
+    typeof event.id === "string" &&
+    typeof event.start === "string" &&
+    typeof event.title === "string"
   );
 }
 
@@ -38,6 +38,17 @@ function Calendar () {
 
   useEffect(() => {
     eventsDispatch(getEventsThunk());
+    document.addEventListener("calendarCreateEvent", e => {
+      const event = e as CustomEvent<ICalendarEvent>;
+
+      if (!event.detail) {
+        console.error("Invalid calendarCreateEvent event data!");
+        return;
+      }
+
+      event.detail.id = uuidv4();
+      eventsDispatch(addEvent(event.detail));
+    });
   }, []);
 
   function handleClick (arg: any) {

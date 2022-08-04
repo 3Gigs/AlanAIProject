@@ -1,5 +1,13 @@
+import { AlanButton } from "@alan-ai/alan-sdk-web/dist/AlanButton";
+import { useEffect } from "react";
+import { initAlanBtn } from "../../App";
 
 function Home () {
+  useEffect(() => {
+    initAlanBtn();
+    ((window as any).alanBtnInstance as AlanButton).setVisualState({ screen: "Home" });
+  }, []);
+
   return (
         <div className="Home">
             <div className="Hero" >

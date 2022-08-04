@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseApp } from "../../main";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { AlanButton } from "@alan-ai/alan-sdk-web/dist/AlanButton";
+import { initAlanBtn } from "../../App";
 
 function AuthPage () {
   const [email, setEmail] = useState("");
@@ -14,6 +16,11 @@ function AuthPage () {
   const auth = getAuth(firebaseApp);
   const isAuth = auth?.currentUser;
   console.log(isAuth);
+
+  useEffect(() => {
+    initAlanBtn();
+    ((window as any).alanBtnInstance as AlanButton).setVisualState({ screen: "Login" });
+  }, []);
 
   function toDashboard () {
     navigate(0);

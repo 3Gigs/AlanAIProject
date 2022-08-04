@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import Home from "./Routes/Home/Home";
@@ -6,20 +5,40 @@ import Dashboard from "./Routes/Dashboard/Dashboard";
 import Login from "./Routes/Login/Login";
 import Logout from "./Routes/Logout/Logout";
 import Navi from "./Routes/Navbar/Navi";
+import { ICalendarEvent } from "./Components/calendar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function App () {
-  useEffect(() => {
-    alanBtn({
-      key: "9c762b628a6087547b2d24cde198197c2e956eca572e1d8b807a3e2338fdd0dc/stage",
+export const initAlanBtn = () => {
+  if (!(window as any).alanBtnInstance) {
+    (window as any).alanBtnInstance = alanBtn({
+      key: "93d40f793be48938c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage",
+      // Alt key: 9c762b628a6087547b2d24cde198197c2e956eca572e1d8b807a3e2338fdd0dc/stage
       onCommand: (commandData: any) => {
-        if (commandData.command === "go:back") {
-          // Call the client code that will react to the received command
+        switch (commandData.command) {
+          case "navigate:Dashboard":
+            window.location.pathname = "/dashboard";
+            break;
+          case "navigate:Home":
+            window.location.pathname = "/";
+            break;
+          case "navigate:SignIn":
+            window.location.pathname = "/login";
+            break;
+          case "go:Back":
+            history.back();
+            break;
+          case "createEvent":
+            console.log(commandData.eventInfo);
+            document.dispatchEvent(new CustomEvent<ICalendarEvent>("calendarCreateEvent", { detail: commandData.eventInfo }));
+            break;
+          default:
         }
       }
     });
-  });
+  }
+};
 
+function App () {
   return (
     <BrowserRouter>
       <Routes>
