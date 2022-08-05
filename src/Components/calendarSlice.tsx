@@ -16,7 +16,7 @@ interface CalendarState {
     status: LoadStatus
 }
 
-const getEvents = () => new Promise<Array<ICalendarEvent>>((resolve, reject) => {
+export const getEvents = () => new Promise<Array<ICalendarEvent>>((resolve, reject) => {
   let events: Array<ICalendarEvent> = [];
 
   const auth = getAuth(firebaseApp);

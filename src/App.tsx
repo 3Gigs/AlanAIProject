@@ -30,6 +30,15 @@ export const initAlanBtn = () => {
             console.log(commandData.eventInfo);
             document.dispatchEvent(new CustomEvent<ICalendarEvent>("calendarCreateEvent", { detail: commandData.eventInfo }));
             break;
+          case "viewEvent":
+            document.dispatchEvent(new CustomEvent("calendarViewEvent", { detail: commandData.title }));
+            break;
+          case "closeEvent":
+            document.dispatchEvent(new Event("calendarCloseEvent"));
+            break;
+          case "deleteEvent":
+            document.dispatchEvent(new Event("calendarDeleteEvent"));
+            break;
           default:
         }
       }
