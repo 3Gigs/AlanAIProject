@@ -65,6 +65,12 @@ const calendarSlice = createSlice({
         start: action.payload.start,
         end: action.payload.end
       });
+      state.value = [...state.value, {
+        title: action.payload.title,
+        id: action.payload.id,
+        start: action.payload.start,
+        end: action.payload.end
+      }];
     },
     deleteEvent: (state, action: PayloadAction<string>) => {
       const auth = getAuth(firebaseApp);

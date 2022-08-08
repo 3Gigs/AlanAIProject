@@ -114,8 +114,8 @@ function Calendar () {
 
   function handleEventClick (arg: any) {
     setEventManagerVisible(true);
-    setEventManagerX(arg.jsEvent.screenX);
-    setEventManagerY(arg.jsEvent.screenY);
+    setEventManagerX(arg.jsEvent.clientX);
+    setEventManagerY(arg.jsEvent.clientY);
 
     if (!arg.event._def.publicId && !arg.event.id && !arg.event.title && !arg.event._instance.range.start && !arg.event._instance.range.end) {
       throw new Error("Invalid event!");
