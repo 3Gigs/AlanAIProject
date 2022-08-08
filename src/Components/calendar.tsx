@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction";
 import "../App.css";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../reduxStore";
 import { addEvent, deleteEvent, getEvents, getEventsThunk } from "./calendarSlice";
 import EventManageBox from "./EventManageBox";
