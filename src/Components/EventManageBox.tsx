@@ -22,7 +22,7 @@ function EventManageBox ({ visible, x, y, event, onCloseClick }: Props) {
   }
 
   return (
-        <div className="EventManageBox" style={{ display: visible ? "inline" : "none", left: x, top: y - 50 }}>
+        <div className="EventManageBox_Click" style={{ display: visible ? "inline" : "none", left: x, top: y - 50 }}>
             <div className="EventManagerActionMenu">
                 <span onClick={handleClickDelete} className="EventManagerActionButton material-symbols-outlined">
                     delete

@@ -1,3 +1,16 @@
+@use 'globals';
+
+$rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
+
+%EventManageBox {
+  position: absolute;
+  padding: 5px 10px 10px 10px;
+  z-index: 2;
+  box-shadow: $rect-shadow-box;
+  border-radius: 5px; 
+  background-color: white;
+}
+
 .App {
   display: flex;
   flex-flow: row nowrap;
@@ -23,13 +36,16 @@
   padding: 10px;
 }
 
-.EventManageBox {
-  position: absolute;
-  padding: 5px 10px 10px 10px;
-  z-index: 2;
-  box-shadow: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
-  border-radius: 5px; 
-  background-color: white;
+.EventManageBox_Click {
+    @extend %EventManageBox;
+}
+
+.EventManageBox_Modal {
+  @extend %EventManageBox;
+  width: calc(max(20%, 400px));
+  left: 40vw;
+  top: 25%;
+  margin: auto;
 }
 
 .Modal {
@@ -42,18 +58,6 @@
   background-color: rgba(0,0,0,0.4);
 }
 
-.ModalEventBox {
-  padding: 5px 20px 20px 20px;
-  position: absolute;
-  z-index: 2;
-  box-shadow: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
-  border-radius: 5px; 
-  width: calc(max(20%, 400px));
-  left: 40vw;
-  top: 25%;
-  margin: auto;
-  background-color: white;
-}
 
 .EventManagerActionMenu {
   display: flex;
@@ -70,7 +74,7 @@
 }
 
 .EventBoxAlan {
-  background-color: #0d67ff;
+  background-color: globals.$primary-color;
   color: #eaf6ff;
   padding: 10px;
   border-radius: 5px;

@@ -21,7 +21,7 @@ function ModalEventBox ({ visible, event, onCloseClick }: Props) {
 
   return (
     <div className="Modal" style={{ display: visible ? "inline" : "none" }}>
-      <div className="ModalEventBox">
+      <div className="EventManageBox_Modal">
           <div className="EventManagerActionMenu">
               <span onClick={handleClickDelete} className="EventManagerActionButton material-symbols-outlined">
                   delete
