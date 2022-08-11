@@ -2,7 +2,7 @@ import { getAuth } from "@firebase/auth";
 import { onValue, ref, set } from "@firebase/database";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { db, firebaseApp } from "../main";
-import { ICalendarEvent, isCalendarEvent } from "./calendar";
+import { ICalendarEvent, isCalendarEvent } from "./Calendar";
 
 export enum LoadStatus {
     // eslint-disable-next-line no-unused-vars

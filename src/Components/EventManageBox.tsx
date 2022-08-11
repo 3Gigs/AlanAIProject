@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../reduxStore";
-import { ICalendarEvent } from "./calendar";
+import { ICalendarEvent } from "./Calendar";
 import { deleteEvent } from "./calendarSlice";
 
 interface Props {

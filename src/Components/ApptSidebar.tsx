@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getAuth } from "@firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch } from "../reduxStore";
-import { ICalendarEvent } from "./calendar";
+import { ICalendarEvent } from "./Calendar";
 import { addEvent } from "./calendarSlice";
 
 function AddAppointmentBox () {
@@ -23,7 +23,7 @@ function AddAppointmentBox () {
   }
 
   return (
-        <Card className="AddAppointmentbox">
+        <Card className="AddApptBox">
             <Form>
                 <Form.Group className="mb-3" controlId='formBasicEmail'>
                     <Form.Label>Event</Form.Label>
@@ -61,7 +61,7 @@ function AddAppointmentBox () {
 
 function appointments () {
   return (
-        <Card className='Appointments'>
+        <Card className="ApptSidebar">
             <h1>Appointments</h1>
             <AddAppointmentBox />
             <hr />

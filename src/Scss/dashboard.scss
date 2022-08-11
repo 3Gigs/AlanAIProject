@@ -11,7 +11,7 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
   background-color: white;
 }
 
-.App {
+.Dashboard {
   display: flex;
   flex-flow: row nowrap;
   flex: 1;
@@ -25,13 +25,13 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
   user-select: none;
 }
 
-.Appointments {
+.ApptSidebar {
   margin: 5px 20px 5px 5px;
   padding: 10px;
   flex: 1 0;
 }
 
-.AddAppointmentbox {
+.AddApptBox {
   margin-top: 5px;
   padding: 10px;
 }

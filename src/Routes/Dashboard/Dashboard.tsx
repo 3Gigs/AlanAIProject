@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
-import AlanCalendar from "../../Components/calendar";
-import Appointments from "../../Components/appointments";
+import AlanCalendar from "../../Components/Calendar";
+import Appointments from "../../Components/ApptSidebar";
 import { firebaseApp } from "../../main";
 import { getAuth } from "firebase/auth";
 import { useEffect } from "react";
@@ -19,7 +19,7 @@ function Dashboard () {
 
   return (
     isAuth
-      ? <div className="App">
+      ? <div className="Dashboard">
         <Appointments />
         <AlanCalendar />
       </div>

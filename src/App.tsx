@@ -5,7 +5,7 @@ import Dashboard from "./Routes/Dashboard/Dashboard";
 import Login from "./Routes/Login/Login";
 import Logout from "./Routes/Logout/Logout";
 import Navi from "./Routes/Navbar/Navi";
-import { ICalendarEvent } from "./Components/calendar";
+import { ICalendarEvent } from "./Components/Calendar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const initAlanBtn = () => {
