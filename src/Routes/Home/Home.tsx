@@ -1,6 +1,7 @@
 import { AlanButton } from "@alan-ai/alan-sdk-web/dist/AlanButton";
 import { useEffect } from "react";
 import { initAlanBtn } from "../../App";
+import "../../Scss/home.scss";
 
 function Home () {
   useEffect(() => {

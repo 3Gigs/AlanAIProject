@@ -1,0 +1,77 @@
+.App {
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1;
+  height: 93vh;
+}
+
+.Calendar {
+  margin-top: 5px;
+  margin-right: 5px;
+  max-width: calc(100% - 400px);
+  user-select: none;
+}
+
+.Appointments {
+  margin: 5px 20px 5px 5px;
+  padding: 10px;
+  flex: 1 0;
+}
+
+.AddAppointmentbox {
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.EventManageBox {
+  position: absolute;
+  padding: 5px 10px 10px 10px;
+  z-index: 2;
+  box-shadow: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
+  border-radius: 5px; 
+  background-color: white;
+}
+
+.Modal {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.ModalEventBox {
+  padding: 5px 20px 20px 20px;
+  position: absolute;
+  z-index: 2;
+  box-shadow: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
+  border-radius: 5px; 
+  width: calc(max(20%, 400px));
+  left: 40vw;
+  top: 25%;
+  margin: auto;
+  background-color: white;
+}
+
+.EventManagerActionMenu {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.EventManagerActionButton {
+  padding: 2px;
+}
+
+.EventManagerActionButton:hover {
+  border-radius: 32px;
+  background-color: rgb(0, 0, 0, .2)
+}
+
+.EventBoxAlan {
+  background-color: #0d67ff;
+  color: #eaf6ff;
+  padding: 10px;
+  border-radius: 5px;
+}

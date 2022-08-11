@@ -6,6 +6,7 @@ import { getAuth } from "firebase/auth";
 import { useEffect } from "react";
 import { AlanButton } from "@alan-ai/alan-sdk-web/dist/AlanButton";
 import { initAlanBtn } from "../../App";
+import "../../Scss/dashboard.scss";
 
 function Dashboard () {
   const auth = getAuth(firebaseApp);

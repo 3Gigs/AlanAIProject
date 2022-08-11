@@ -6,7 +6,6 @@ import DatePicker from "react-datepicker";
 import { set, ref } from "@firebase/database";
 import { db, firebaseApp } from "../main";
 import "react-datepicker/dist/react-datepicker.css";
-import "../App.css";
 import { getAuth } from "@firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch } from "../reduxStore";
