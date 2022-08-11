@@ -7,6 +7,7 @@ import Logout from "./Routes/Logout/Logout";
 import Navi from "./Routes/Navbar/Navi";
 import { ICalendarEvent } from "./Components/Calendar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ThemeProvider } from "react-bootstrap";
 
 export const initAlanBtn = () => {
   if (!(window as any).alanBtnInstance) {
@@ -48,7 +49,7 @@ export const initAlanBtn = () => {
 
 function App () {
   return (
-    <div>
+    <ThemeProvider>
       <Navi />
       <BrowserRouter>
         <Routes>
@@ -58,7 +59,7 @@ function App () {
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 
