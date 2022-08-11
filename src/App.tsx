@@ -48,16 +48,17 @@ export const initAlanBtn = () => {
 
 function App () {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Navi />}>
+    <div>
+      <Navi />
+      <BrowserRouter>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/logout" element={<Logout />} />
           <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
