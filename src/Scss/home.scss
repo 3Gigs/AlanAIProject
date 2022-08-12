@@ -1,69 +1,66 @@
 @use 'globals';
 
+$border-radius: 10px;
+
 .Hero {
   display: flex;
+  flex-direction: row;
   color: white;
   background-color: globals.$primary-color;
   margin: 20px;
-  padding: 0px;
-  border-radius: 10px;
+  padding: 10px 0px 10px 0px;;
+  border-radius: $border-radius;
   flex: 1 1;
 }
 
 .PromoText {
-  text-align: center;
-  margin: 90px;
   flex: 1 1;
+  padding: 40px;
+  text-align: center;
 }
 
 .PromoText_1 {
-  font-size: max(4vw, 50px);
+  font-size: 4.5em;
 }
 
 .PromoArt {
-  position: relative;
   flex: 1 2;
-  margin-top: 40px;
-}
-
-.PromoArt_Calendar {
-  top: 0px;
-  left: 0px;
-  width: 500px;
-  position: absolute;
-}
-
-.PromoArt_Clock {
-  width: 200px;
-  top: 220px;
-  left: 5px;
-  z-index: 2;
-  position: absolute;
-}
-
-.PromoArt_Mic {
-  position: absolute;
-  left: 550px;
-  top: 350px;
+  position: relative;
+  height: 700px;
+  width: 100%;
 }
 
 .PromoStart {
   background-color: rgb(0, 0, 0 , .55);
   padding: 2px;
-  border-radius: 10px;
+  border-radius: $border-radius;
 }
 
 .GetStarted {
   font-size: 35px;
 }
 
-.BottomText {
+@media screen and (max-width: 1400px) {
+  .Hero {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .PromoText_1 {
+    font-size: 2.5em;
+  }
+}
+
+.CreditText {
+  position: relative;
+  top: 40px;
   display: column;
-  position: absolute;
   padding: 10px;
   background-color: lightyellow;
+  color: black;
   bottom: 0;
-  border-radius: 0px 5px;
+  border-radius: $border-radius;
 }
 
 .BottomText_Header {
@@ -74,37 +71,4 @@
 .BottomText_Credits {
   flex: 1 0;
   font-size: 1.5rem;
-}
-
-@media (max-width: 800px) {
-  .Hero {
-    display: flex;
-    flex-direction: column;
-    height: 40vh;
-    color: white;
-    background-color: #0539ff;
-  }
-
-  .PromoArt {
-    transform: scale(0.6);
-    position: relative;
-    top: -100px;
-    left: -50px;
-    flex: 1 2;
-    margin-top: 40px;
-  }
-}
-
-@media (max-width: 1450px) {
-  .Hero {
-    display: flex;
-    height: 40vh;
-    color: white;
-    background-color: #0539ff;
-  }
-
-  .PromoArt {
-    flex: 2 1;
-    transform: scale(0.6)
-  }
 }
