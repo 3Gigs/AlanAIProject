@@ -1,32 +1,10 @@
-import { useReducer } from "preact/hooks";
-import { createContext } from "react";
+import React, { createContext, useState } from "react";
 
-enum themeModeActionType {
-  CHANGED = "changed",
-}
-
-interface themeModeAction {
-  type: themeModeActionType
-  theme: "dark" | "light"
-}
-
-export const ThemeContext = createContext<null | "dark" | "light">(null);
+export const ThemeContext = createContext<undefined | "dark" | "light">(undefined);
 // eslint-disable-next-line func-call-spacing
-export const ThemeDispatchContext = createContext<null | ((action: themeModeAction) => void)>(null);
+export const ThemeDispatchContext = createContext<undefined | React.Dispatch<React.SetStateAction<"dark" | "light">>>(undefined);
 
-const [themeMode, dispatch] = useReducer(
-  (themeMode: "dark" | "light", action: themeModeAction) => {
-    switch (action.type) {
-      case "changed": {
-        return action.theme;
-      }
-      default: {
-        throw Error("Unknown action: " + action.type);
-      }
-    }
-  },
-  "dark"
-);
+const [themeMode, dispatch] = useState<"dark" | "light">("dark");
 
 function ThemeProvider ({ children }: { children: JSX.Element }) {
   return (
