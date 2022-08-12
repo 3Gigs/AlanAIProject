@@ -17,10 +17,15 @@ function Navi () {
   }, []);
 
   return (
-        <div id="Navbar">
+        <nav id="Navbar">
+          <div id="NavContainerLeft">
             <h1>Alan Appointments</h1>
-            <Outlet />
-        </div>
+          </div>
+          <div id="NavContainerRight">
+
+          </div>
+          <Outlet />
+        </nav>
   );
 }
 
