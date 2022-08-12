@@ -50,8 +50,8 @@ export const initAlanBtn = () => {
 function App () {
   return (
     <ThemeProvider>
-      <Navi />
       <BrowserRouter>
+        <Navi />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />}/>

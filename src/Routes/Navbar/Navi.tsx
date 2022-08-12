@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from "../../main";
 import "../../Scss/navbar.scss";
@@ -17,15 +17,21 @@ function Navi () {
   }, []);
 
   return (
-        <nav id="Navbar">
-          <div id="NavContainerLeft">
-            <h1>Alan Appointments</h1>
-          </div>
-          <div id="NavContainerRight">
-
-          </div>
-          <Outlet />
-        </nav>
+    <div>
+      <nav id="Navbar">
+        <div id="NavContainerLeft">
+          <Link to="/">
+            <img src="/assets/calendar.svg" alt="Logo" id="NavLogo" className="NavItem" />
+          </Link>
+          <h1 className="NavItem">sneed</h1>
+        </div>
+        <div id="NavContainerRight">
+          <h1 className="NavItem">feed</h1>
+          <h1 className="NavItem">seed</h1>
+        </div>
+      </nav>
+      <Outlet />
+    </div>
   );
 }
 
