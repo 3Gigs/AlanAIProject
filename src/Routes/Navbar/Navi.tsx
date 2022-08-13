@@ -13,6 +13,8 @@ function Navi () {
     onAuthStateChanged(auth, (user) => {
       if (user?.email) {
         setEmail(user.email);
+      } else {
+        setEmail("");
       }
     });
   }, []);
@@ -29,6 +31,7 @@ function Navi () {
           <Link to="/dashboard" className="NavItem">Dashboard</Link>
         </div>
         <div id="NavContainerRight">
+          <button id="ThemeModeButton" className="NavItem">☀️</button>
           <DropDown toggle=
             {
               <span className="material-symbols-outlined IconAlignFix">
@@ -36,7 +39,15 @@ function Navi () {
               </span>
             }
           >
-            <p>{email}</p>
+            <div>
+              {email
+                ? <div>
+                  <p>{email}</p>
+                  <Link to="/logout">Logout</Link>
+                </div>
+                : <Link to="/login">Sign in</Link>
+              }
+            </div>
           </DropDown>
         </div>
       </nav>

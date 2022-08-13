@@ -12,8 +12,10 @@
 
 #DropDownMenu {
   background-color: white;
+  min-width: 100px;
   left: auto;
   right: 0px;
+  text-align: left;
   position: absolute;
   padding: 15px;
   border-radius: 5px;

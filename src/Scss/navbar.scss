@@ -25,7 +25,6 @@ $NavBorderRadius: 10px;
   display: flex;
   margin: 0px 20px 0px 20px;
   padding: 5px;
-  gap: 10px;
 }
 
 #NavBrand {
@@ -50,6 +49,7 @@ $NavBorderRadius: 10px;
   text-decoration: none;
   font-weight: 600;
   padding: $NavPadding;
+  vertical-align: middle;
 }
 
 .NavItem:hover {
