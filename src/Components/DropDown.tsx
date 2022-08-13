@@ -15,21 +15,14 @@ function DropDown ({ toggle, children }: Props) {
         (e?.target as any)?.parentElement?.id === "DropDownMenu") {
         setVisible(true);
       } else {
-        console.log((e?.target as any)?.parentElement?.id === "DropDownMenu");
         setVisible(false);
       }
     };
   }, []);
 
-  function show () {
-    if (!visible) {
-      setVisible(true);
-    }
-  }
-
   return (
     <div id="DropDown">
-      <button id="ToggleButton" onClick={show}>{ toggle }</button>
+      <button id="ToggleButton">{ toggle }</button>
       { visible
         ? <div id="DropDownMenu">
             { children }
