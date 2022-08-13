@@ -20,8 +20,8 @@ function Dashboard () {
   return (
     isAuth
       ? <div className="Dashboard">
-        <Appointments />
         <AlanCalendar />
+        <Appointments />
       </div>
       : <Navigate to="/login" />
   );

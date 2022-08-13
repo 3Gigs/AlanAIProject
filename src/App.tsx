@@ -8,6 +8,8 @@ import Navi from "./Routes/Navbar/Navi";
 import { ICalendarEvent } from "./Components/Calendar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ThemeProvider } from "react-bootstrap";
+import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 
 export const initAlanBtn = () => {
   if (!(window as any).alanBtnInstance) {
@@ -49,17 +51,19 @@ export const initAlanBtn = () => {
 
 function App () {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <Navi />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />}/>
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterLuxon}>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Navi />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </LocalizationProvider>
   );
 }
 

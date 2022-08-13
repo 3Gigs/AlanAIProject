@@ -16,24 +16,28 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
   flex-flow: row nowrap;
   flex: 1;
   height: 93vh;
+  margin: 0px 10px 0px 10px;
 }
 
 .Calendar {
+  flex: 2 0;
+  min-height: 500px;
   margin-top: 5px;
   margin-right: 5px;
-  max-width: calc(100% - 400px);
   user-select: none;
 }
 
 .ApptSidebar {
-  margin: 5px 20px 5px 5px;
+  flex: 1 1;
+  max-width: 400px;
   padding: 10px;
-  flex: 1 0;
 }
 
 .AddApptBox {
-  margin-top: 5px;
-  padding: 10px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
 .EventManageBox_Click {
@@ -76,6 +80,12 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
 .EventBoxAlan {
   background-color: globals.$primary-color;
   color: #eaf6ff;
-  padding: 10px;
+  padding: 15px;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .Dashboard {
+    flex-direction: column;
+  }
 }

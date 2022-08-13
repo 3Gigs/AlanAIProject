@@ -1,21 +1,20 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
-import DatePicker from "react-datepicker";
 import { set, ref } from "@firebase/database";
 import { db, firebaseApp } from "../main";
-import "react-datepicker/dist/react-datepicker.css";
 import { getAuth } from "@firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch } from "../reduxStore";
 import { ICalendarEvent } from "./Calendar";
 import { addEvent } from "./calendarSlice";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import { DateTime } from "luxon";
 
 function AddAppointmentBox () {
   const [eventInfo, setEventInfo] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(DateTime.now());
+  const [endDate, setEndDate] = useState(DateTime.now());
   const eventDispatch = useAppDispatch();
   const email = getAuth(firebaseApp)?.currentUser?.email;
   if (!email) {
@@ -23,49 +22,64 @@ function AddAppointmentBox () {
   }
 
   return (
-        <Card className="AddApptBox">
-            <Form>
-                <Form.Group className="mb-3" controlId='formBasicEmail'>
-                    <Form.Label>Event</Form.Label>
-                    <Form.Control type="text" onChange={(txt) => setEventInfo(txt.target.value)} placeholder="Ex. Doctor's appointment" />
-                    <Form.Label>Date Start</Form.Label>
-                    <DatePicker selected={startDate} showTimeSelect onChange={(date: Date) => setStartDate(date)} />
-                    <Form.Label>Date End</Form.Label>
-                    <DatePicker selected={endDate} showTimeSelect onChange={(date: Date) => setEndDate(date)} />
-                </Form.Group>
-            </Form>
-            <Button variant={"success"} onClick={() => {
-              if (eventInfo.length <= 0 || !startDate || !endDate) {
-                alert("Please fully fill out appointment detail!");
-              } else {
-                const id = uuidv4();
-                set(ref(db, `users/${email.replace(".", "DOT")}/events/${id}`), {
-                  title: eventInfo,
-                  id,
-                  start: startDate.toISOString(),
-                  end: endDate.toISOString()
-                });
-                const payload: ICalendarEvent = {
-                  title: eventInfo,
-                  id,
-                  start: startDate.toISOString(),
-                  end: endDate.toISOString()
-                };
-                eventDispatch(addEvent(payload));
+      <div>
+        <form className="AddApptBox">
+          <TextField id="outlined-basic" label="Event" variant="outlined" onChange={(txt: any) => setEventInfo(txt.target.value)}></TextField>
+          <DateTimePicker
+            renderInput={(props) => <TextField {...props} />}
+            label="Start Date"
+            value={startDate}
+            onChange={(newValue) => {
+              if (newValue) {
+                setStartDate(newValue);
               }
+            }}>
+          </DateTimePicker>
+          <DateTimePicker
+            renderInput={(props) => <TextField {...props} />}
+            label="End Date"
+            value={endDate}
+            onChange={(newValue) => {
+              if (newValue) {
+                setEndDate(newValue);
+              }
+            }}>
+          </DateTimePicker>
+          <Button variant="contained" onClick={() => {
+            if (eventInfo.length <= 0 || !startDate || !endDate) {
+              alert("Please fully fill out appointment detail!");
+            } else {
+              console.log(startDate);
+              const id = uuidv4();
+              set(ref(db, `users/${email.replace(".", "DOT")}/events/${id}`), {
+                title: eventInfo,
+                id,
+                start: startDate.toISO(),
+                end: endDate.toISO()
+              });
+              const payload: ICalendarEvent = {
+                title: eventInfo,
+                id,
+                start: startDate.toISO(),
+                end: endDate.toISO()
+              };
+              eventDispatch(addEvent(payload));
             }
-            }>Add Event</Button>
-        </Card>
+          }
+          }>Add Event
+        </Button>
+        </form>
+      </div>
   );
 }
 
 function appointments () {
   return (
-        <Card className="ApptSidebar">
-            <h1>Appointments</h1>
-            <AddAppointmentBox />
-            <hr />
-        </Card>
+    <div className="ApptSidebar">
+      <h1>Appointments</h1>
+      <AddAppointmentBox />
+      <hr />
+    </div>
   );
 }
 
