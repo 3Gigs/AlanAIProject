@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from "../../main";
 import "../../Scss/navbar.scss";
+import DropDown from "../../Components/DropDown";
 
 function Navi () {
   const auth = getAuth(firebaseApp);
@@ -19,15 +20,24 @@ function Navi () {
   return (
     <div>
       <nav id="Navbar">
-        <div id="NavContainerLeft">
+        <div id="NavBrand">
           <Link to="/">
-            <img src="/assets/calendar.svg" alt="Logo" id="NavLogo" className="NavItem" />
+            <img src="/assets/calendar.svg" alt="Logo" id="NavLogo" />
           </Link>
-          <h1 className="NavItem">sneed</h1>
+        </div>
+        <div id="NavContainerLeft">
+          <Link to="/dashboard" className="NavItem">Dashboard</Link>
         </div>
         <div id="NavContainerRight">
-          <h1 className="NavItem">feed</h1>
-          <h1 className="NavItem">seed</h1>
+          <DropDown toggle=
+            {
+              <span className="material-symbols-outlined IconAlignFix">
+                account_circle
+              </span>
+            }
+          >
+            <p>{email}</p>
+          </DropDown>
         </div>
       </nav>
       <Outlet />
