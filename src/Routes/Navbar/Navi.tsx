@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from "../../main";
 import "../../Scss/navbar.scss";
 import DropDown from "../../Components/DropDown";
+import { ThemeContext, ThemeDispatchContext } from "../../Providers/ThemeProvider";
 
 function Navi () {
   const auth = getAuth(firebaseApp);
   const [email, setEmail] = useState("");
+  const themeDispatch = useContext(ThemeDispatchContext);
+  const themeMode = useContext(ThemeContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -31,7 +34,7 @@ function Navi () {
           <Link to="/dashboard" className="NavItem">Dashboard</Link>
         </div>
         <div id="NavContainerRight">
-          <button id="ThemeModeButton" className="NavItem">☀️</button>
+          <button id="ThemeModeButton" className="NavItem" onClick={() => { if (themeDispatch) themeDispatch({ type: "toggle" }); }}>{ themeMode === "light" ? "☀️" : "🌙"}</button>
           <DropDown toggle=
             {
               <span className="material-symbols-outlined IconAlignFix">
