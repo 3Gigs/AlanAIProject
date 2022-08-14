@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, Fragment } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from "../../main";
@@ -23,7 +23,7 @@ function Navi () {
   }, []);
 
   return (
-    <div>
+    <Fragment>
       <nav id="Navbar">
         <div id="NavBrand">
           <Link to="/">
@@ -55,7 +55,7 @@ function Navi () {
         </div>
       </nav>
       <Outlet />
-    </div>
+    </Fragment>
   );
 }
 
