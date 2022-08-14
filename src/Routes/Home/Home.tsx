@@ -19,7 +19,7 @@ function Home () {
                     </header>
                     <div className="PromoStart">
                         <h4 className="GetStarted">Get started</h4>
-                        <h4>Click on <span style={{ color: "lightcyan" }}>bottom right button</span> and say <span style={{ color: "lightsalmon" }}>&quot;Get started&quot;</span></h4>
+                        <p>Click on <span style={{ color: "lightcyan" }}>bottom right button</span> and say <span style={{ color: "lightsalmon" }}>&quot;Get started&quot;</span></p>
                     </div>
                     <div className="CreditText">
                         <h1 className="BottomText_Header">Project created by</h1>
