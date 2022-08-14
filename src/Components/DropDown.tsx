@@ -12,7 +12,8 @@ function DropDown ({ toggle, children }: Props) {
   useEffect(() => {
     window.onclick = (e) => {
       if ((e as any)?.target?.parentElement?.id === "ToggleButton" ||
-        (e?.target as any)?.parentElement?.id === "DropDownMenu") {
+        (e?.target as any)?.parentElement?.id === "DropDownMenu" ||
+        (e?.target as any)?.id === "ToggleButton") {
         setVisible(true);
       } else {
         setVisible(false);
