@@ -3,22 +3,32 @@
 $NavFontSize: 1.2rem;
 $NavPadding: 5px 10px 5px 10px;
 $NavBorderRadius: 10px;
+$FontUnfocused_Light: #48474c;
 
 .IconAlignFix {
   vertical-align: middle;
   line-height: 1px;
 }
 
-#Navbar {
+%Navbar {
   position: sticky;
   z-index: 1000;
   display: flex;
-  background-color: white;
   backdrop-filter: blur(10px);
   border-radius: 0px 0px $NavBorderRadius $NavBorderRadius;
   box-shadow:0px 2px 2px globals.$BoxShadowColor;
   padding: 0px 20px 0px 20px;
   user-select: none; 
+}
+
+#Navbar_Light {
+  @extend %Navbar;
+  background-color: white!important;
+}
+
+#Navbar_Dark {
+  @extend %Navbar;
+  background-color: globals.$background-slate!important;
 }
 
 %NavContainer {
@@ -42,18 +52,31 @@ $NavBorderRadius: 10px;
   justify-content: flex-end;
 }
 
-.NavItem {
+%NavItem {
   font-size: $NavFontSize;
-  color: #48474c!important;
   text-decoration: none;
   font-weight: 600;
   padding: $NavPadding;
   vertical-align: middle;
 }
 
-.NavItem:hover {
+.NavItem_Light {
+  @extend %NavItem;
+  color: $FontUnfocused_Light!important;
+}
+
+.NavItem_Dark {
+  @extend %NavItem;
+  color: globals.$font-dark!important;
+}
+
+.NavItem_Light:hover {
   color: black!important;
   border-radius: 20px;
+}
+
+.NavItem_Dark:hover {
+  color: white!important;
 }
 
 #NavLogo {

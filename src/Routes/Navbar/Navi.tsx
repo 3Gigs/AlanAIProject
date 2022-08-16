@@ -24,20 +24,20 @@ function Navi () {
 
   return (
     <Fragment>
-      <nav id="Navbar">
+      <nav id={ themeMode === "light" ? "Navbar_Light" : "Navbar_Dark"}>
         <div id="NavBrand">
           <Link to="/">
             <img src="/assets/calendar.svg" alt="Logo" id="NavLogo" />
           </Link>
         </div>
         <div id="NavContainerLeft">
-          <Link to="/dashboard" className="NavItem">Dashboard</Link>
+          <Link to="/dashboard" className={ themeMode === "light" ? "NavItem_Light" : "NavItem_Dark"}>Dashboard</Link>
         </div>
         <div id="NavContainerRight">
-          <button id="ThemeModeButton" className="NavItem" onClick={() => { if (themeDispatch) themeDispatch({ type: "toggle" }); }}>{ themeMode === "light" ? "☀️" : "🌙"}</button>
+          <button id="ThemeModeButton" onClick={() => { if (themeDispatch) themeDispatch({ type: "toggle" }); }}>{ themeMode === "light" ? "☀️" : "🌙"}</button>
           <DropDown toggle=
             {
-              <span className="material-symbols-outlined IconAlignFix">
+              <span className={ (themeMode === "light" ? "NavItem_Light " : "NavItem_Dark ") + "material-symbols-outlined IconAlignFix" }>
                 account_circle
               </span>
             }

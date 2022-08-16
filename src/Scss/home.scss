@@ -2,6 +2,14 @@
 
 $border-radius: 10px;
 
+.Background_Light {
+  background: white
+}
+
+.Background_Dark {
+  background: globals.$background-dark;
+}
+
 .Hero {
   display: flex;
   flex-direction: row;
