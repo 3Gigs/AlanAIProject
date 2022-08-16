@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import { createTheme, ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 
 interface ThemeAction {
   type: string;
@@ -21,10 +22,24 @@ function ThemeProvider ({ children }: { children: JSX.Element }) {
       }
     }, "light");
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark"
+    }
+  });
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light"
+    }
+  });
+
   return (
     <ThemeContext.Provider value={themeMode}>
       <ThemeDispatchContext.Provider value={themeDispatch}>
-        {children}
+        <MUIThemeProvider theme={ themeMode === "dark" ? darkTheme : lightTheme}>
+          {children}
+        </MUIThemeProvider>
       </ThemeDispatchContext.Provider>
     </ThemeContext.Provider>
   );

@@ -2,21 +2,30 @@
 
 $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
 
-%EventManageBox {
-  position: absolute;
-  padding: 5px 10px 10px 10px;
-  z-index: 2;
-  box-shadow: $rect-shadow-box;
-  border-radius: 5px; 
+.Background_Light {
   background-color: white;
 }
 
-.Dashboard {
+.Background_Dark {
+  background-color: #0a1929;
+}
+
+%Dashboard {
   display: flex;
   flex-flow: row nowrap;
   flex: 1;
   height: 93vh;
   margin: 0px 10px 0px 10px;
+}
+
+.Dashboard_Light {
+  @extend %Dashboard;
+  color: black;
+}
+
+.Dashboard_Dark {
+  @extend %Dashboard;
+  color: white;
 }
 
 .Calendar {
@@ -40,8 +49,24 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
   margin-top: 20px;
 }
 
-.EventManageBox_Click {
-    @extend %EventManageBox;
+%EventManageBox {
+  position: absolute;
+  padding: 5px 10px 10px 10px;
+  z-index: 2;
+  box-shadow: $rect-shadow-box;
+  border-radius: 5px; 
+}
+
+.EventManageBox_Click_Light {
+  @extend %EventManageBox;
+  background-color: white;
+  color: black;
+}
+
+.EventManageBox_Click_Dark {
+  @extend %EventManageBox;
+  background-color: globals.$background-slate;
+  color: globals.$font-dark;
 }
 
 .EventManageBox_Modal {
@@ -79,7 +104,7 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
 
 .EventBoxAlan {
   background-color: globals.$primary-color;
-  color: #eaf6ff;
+  color: globals.$font-dark !important;
   padding: 15px;
   border-radius: 5px;
 }

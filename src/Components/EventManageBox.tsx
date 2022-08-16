@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ThemeContext } from "../Providers/ThemeProvider";
 import { useAppDispatch } from "../reduxStore";
 import { ICalendarEvent } from "./Calendar";
 import { deleteEvent } from "./calendarSlice";
@@ -15,6 +17,7 @@ function EventManageBox ({ visible, x, y, event, onCloseClick }: Props) {
   const dateStart = new Date(event.start);
   const dateEnd = new Date(event.end);
   const dispatch = useAppDispatch();
+  const theme = useContext(ThemeContext);
 
   function handleClickDelete () {
     onCloseClick();
@@ -22,7 +25,7 @@ function EventManageBox ({ visible, x, y, event, onCloseClick }: Props) {
   }
 
   return (
-        <div className="EventManageBox_Click" style={{ display: visible ? "inline" : "none", left: x, top: y - 50 }}>
+        <div className={theme === "light" ? "EventManageBox_Click_Light" : "EventManageBox_Click_Dark"} style={{ display: visible ? "inline" : "none", left: x, top: y - 50 }}>
             <div className="EventManagerActionMenu">
                 <span onClick={handleClickDelete} className="EventManagerActionButton material-symbols-outlined">
                     delete
