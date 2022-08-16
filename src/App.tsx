@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import Home from "./Routes/Home/Home";
 import Dashboard from "./Routes/Dashboard/Dashboard";
@@ -10,6 +10,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import ThemeProvider from "./Providers/ThemeProvider";
+import LocationProvider from "./Providers/LocationProvider";
+import { Fragment } from "react";
 
 export const initAlanBtn = () => {
   if (!(window as any).alanBtnInstance) {
@@ -54,13 +56,17 @@ function App () {
     <ThemeProvider>
       <LocalizationProvider dateAdapter={AdapterLuxon}>
         <BrowserRouter>
-            <Navi />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
+          <LocationProvider>
+            <Fragment>
+              <Navi />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Routes>
+            </Fragment>
+          </LocationProvider>
         </BrowserRouter>
       </LocalizationProvider>
     </ThemeProvider>
