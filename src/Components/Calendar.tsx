@@ -9,6 +9,8 @@ import EventManageBox from "./EventManageBox";
 import ModalEventBox from "./ModalEventBox";
 import { uuidv4 } from "@firebase/util";
 import { AlanButton } from "@alan-ai/alan-sdk-web/dist/AlanButton";
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export interface ICalendarEvent {
   end: string;
@@ -131,12 +133,13 @@ function Calendar () {
         <EventManageBox key={uuidv4()} visible={eventManagerVisible} x={eventManagerX} y={eventManagerY} event={currentEventInfo} onCloseClick={() => { setEventManagerVisible(false); }} />
         <FullCalendar
           headerToolbar={{ start: "dayGridMonth,dayGridWeek,today", center: "title", end: "prev next" }}
-          plugins={[dayGridPlugin, interactionPlugin]}
+          plugins={[dayGridPlugin, interactionPlugin, bootstrap5Plugin]}
           ref={calendarRef as React.MutableRefObject<FullCalendar>}
           initialView="dayGridMonth"
           height={"95%"}
           events={events}
           eventClick={handleEventClick}
+          themeSystem={"bootstrap5"}
         />
       </div>
   );

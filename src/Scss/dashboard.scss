@@ -20,12 +20,12 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
 
 .Dashboard_Light {
   @extend %Dashboard;
-  color: black;
+  color: black !important;
 }
 
 .Dashboard_Dark {
   @extend %Dashboard;
-  color: white;
+  color: white !important;
 }
 
 .Calendar {
