@@ -110,7 +110,15 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
 }
 
 @media screen and (max-width: 800px) {
-  .Dashboard {
+  .Dashboard_Light {
+    @extend %Dashboard;
+    color: black !important;
+    flex-direction: column;
+  }
+
+  .Dashboard_Dark {
+    @extend %Dashboard;
+    color: white !important;
     flex-direction: column;
   }
 }
