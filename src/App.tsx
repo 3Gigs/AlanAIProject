@@ -44,6 +44,9 @@ export const initAlanBtn = () => {
           case "deleteEvent":
             document.dispatchEvent(new Event("calendarDeleteEvent"));
             break;
+          case "setThemeMode":
+            document.dispatchEvent(new CustomEvent("switchThemeMode", { detail: commandData.theme }));
+            break;
           default:
         }
       }
