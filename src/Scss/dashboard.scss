@@ -1,0 +1,91 @@
+@use 'globals';
+
+$rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
+
+%EventManageBox {
+  position: absolute;
+  padding: 5px 10px 10px 10px;
+  z-index: 2;
+  box-shadow: $rect-shadow-box;
+  border-radius: 5px; 
+  background-color: white;
+}
+
+.Dashboard {
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1;
+  height: 93vh;
+  margin: 0px 10px 0px 10px;
+}
+
+.Calendar {
+  flex: 2 0;
+  min-height: 500px;
+  margin-top: 5px;
+  margin-right: 5px;
+  user-select: none;
+}
+
+.ApptSidebar {
+  flex: 1 1;
+  max-width: 400px;
+  padding: 10px;
+}
+
+.AddApptBox {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.EventManageBox_Click {
+    @extend %EventManageBox;
+}
+
+.EventManageBox_Modal {
+  @extend %EventManageBox;
+  width: calc(max(20%, 400px));
+  left: 40vw;
+  top: 25%;
+  margin: auto;
+}
+
+.Modal {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.EventManagerActionMenu {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.EventManagerActionButton {
+  padding: 2px;
+}
+
+.EventManagerActionButton:hover {
+  border-radius: 32px;
+  background-color: rgb(0, 0, 0, .2)
+}
+
+.EventBoxAlan {
+  background-color: globals.$primary-color;
+  color: #eaf6ff;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .Dashboard {
+    flex-direction: column;
+  }
+}

@@ -2,7 +2,6 @@ import "@fullcalendar/react/dist/vdom";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction";
-import "../App.css";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../reduxStore";
 import { addEvent, deleteEvent, getEvents, getEventsThunk } from "./calendarSlice";
@@ -107,11 +106,6 @@ function Calendar () {
     }
   }, [modalEventManager]);
 
-  function handleClick (arg: any) {
-    // dispatch(addEvent());
-    // dispatch(deleteEvent());
-  }
-
   function handleEventClick (arg: any) {
     setEventManagerVisible(true);
     setEventManagerX(arg.jsEvent.clientX);
@@ -132,7 +126,7 @@ function Calendar () {
   }
 
   return (
-      <div className={"Calendar w-100"}>
+      <div className={"Calendar"}>
         <ModalEventBox key={uuidv4()} visible={modalEventManager} event={currentEventInfo} onCloseClick={() => { setModalEventManager(false); }} />
         <EventManageBox key={uuidv4()} visible={eventManagerVisible} x={eventManagerX} y={eventManagerY} event={currentEventInfo} onCloseClick={() => { setEventManagerVisible(false); }} />
         <FullCalendar
@@ -142,7 +136,6 @@ function Calendar () {
           initialView="dayGridMonth"
           height={"95%"}
           events={events}
-          dateClick={handleClick}
           eventClick={handleEventClick}
         />
       </div>

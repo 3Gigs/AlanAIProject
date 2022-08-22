@@ -1,0 +1,21 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #0539ff;
+$secondary-color:  #1ba1ff;
+$dark-slate: #212121;
+$BoxShadowColor: rgb(0, 0, 0, 0.2);
+
+.icon-right-spacing {
+  margin-right: 5px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+body {
+  background-color: white !important;
+}

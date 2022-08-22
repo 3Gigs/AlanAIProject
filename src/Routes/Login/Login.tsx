@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseApp } from "../../main";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { AlanButton } from "@alan-ai/alan-sdk-web/dist/AlanButton";
 import { initAlanBtn } from "../../App";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function AuthPage () {
   const [email, setEmail] = useState("");
@@ -53,7 +52,7 @@ function AuthPage () {
     isAuth
       ? <Navigate to="/dashboard" />
       : <div className="d-flex justify-content-center Login">
-                <Card className="p-3 mt-1">
+                <div className="p-3 mt-1">
                     <h1>Welcome to AlanAppointment!</h1>
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -75,8 +74,8 @@ function AuthPage () {
                             Sign Up
                         </Button>
                     </Form>
-                </Card>
-            </div>
+              </div>
+        </div>
   );
 }
 

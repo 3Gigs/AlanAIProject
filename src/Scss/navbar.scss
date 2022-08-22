@@ -1,0 +1,95 @@
+@use 'globals';
+
+$NavFontSize: 1.2rem;
+$NavPadding: 5px 10px 5px 10px;
+$NavBorderRadius: 10px;
+
+.IconAlignFix {
+  vertical-align: middle;
+  line-height: 1px;
+}
+
+#Navbar {
+  position: sticky;
+  z-index: 1000;
+  display: flex;
+  background-color: white;
+  backdrop-filter: blur(10px);
+  border-radius: 0px 0px $NavBorderRadius $NavBorderRadius;
+  box-shadow:0px 2px 2px globals.$BoxShadowColor;
+  padding: 0px 20px 0px 20px;
+  user-select: none; 
+}
+
+%NavContainer {
+  display: flex;
+  padding: 5px;
+}
+
+#NavBrand {
+  @extend %NavContainer;
+  margin: 0px 0px 0px 20px;
+}
+
+#NavContainerLeft {
+  @extend %NavContainer;
+  width: 100%;
+}
+
+#NavContainerRight {
+  @extend %NavContainer;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.NavItem {
+  font-size: $NavFontSize;
+  color: #48474c!important;
+  text-decoration: none;
+  font-weight: 600;
+  padding: $NavPadding;
+  vertical-align: middle;
+}
+
+.NavItem:hover {
+  color: black!important;
+  border-radius: 20px;
+}
+
+#NavLogo {
+  height: 2.5em;
+}
+
+#ThemeModeButton {
+  background-color: rgb(0, 0, 0, 0);
+  border-radius: 40px;
+  border-width: 0;
+  padding: $NavPadding;
+  font-size: $NavFontSize;
+  margin-right: 10px;
+}
+
+#ThemeModeButton:hover {
+  background-color: globals.$BoxShadowColor;
+}
+
+#DropDown {
+  padding: $NavPadding;
+  position: relative;
+}
+
+.DropDownContent {
+  display: none;
+  left: -30px;
+  overflow: hidden;
+  flex-direction: column;
+  background-color: white;
+  border-radius: $NavBorderRadius;
+  padding: 15px;
+  box-shadow:0px 2px 2px globals.$BoxShadowColor, 0px -0.5px 2px globals.$BoxShadowColor;
+  text-align: center;
+}
+
+.DropDownContent > *{
+  text-decoration: none;
+}
