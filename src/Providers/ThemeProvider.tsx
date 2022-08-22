@@ -18,6 +18,7 @@ function ThemeProvider ({ children }: { children: JSX.Element }) {
           return state === "dark" ? "light" : "dark";
         }
         case "set": {
+          console.log(action.theme);
           return action.theme;
         }
         default:
@@ -28,7 +29,6 @@ function ThemeProvider ({ children }: { children: JSX.Element }) {
   useEffect(() => {
     document.addEventListener("switchThemeMode", (e) => {
       const event = e as CustomEvent;
-
       if (event.detail === "dark") {
         themeDispatch({ type: "set", theme: "dark" });
       } else if (event.detail === "light") {
