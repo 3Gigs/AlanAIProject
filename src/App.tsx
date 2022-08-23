@@ -16,7 +16,7 @@ import { Fragment } from "react";
 export const initAlanBtn = () => {
   if (!(window as any).alanBtnInstance) {
     (window as any).alanBtnInstance = alanBtn({
-      key: "9c762b628a6087547b2d24cde198197c2e956eca572e1d8b807a3e2338fdd0dc/stage",
+      key: "93d40f793be48938c88976e9550ffd182e956eca572e1d8b807a3e2338fdd0dc/stage",
       onCommand: (commandData: any) => {
         switch (commandData.command) {
           case "navigate:Dashboard":
@@ -43,6 +43,10 @@ export const initAlanBtn = () => {
             break;
           case "deleteEvent":
             document.dispatchEvent(new Event("calendarDeleteEvent"));
+            break;
+          case "switchThemeMode":
+            console.log(commandData.theme);
+            document.dispatchEvent(new CustomEvent("switchThemeMode", { detail: commandData.theme }));
             break;
           default:
         }

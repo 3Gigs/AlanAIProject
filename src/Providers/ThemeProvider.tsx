@@ -1,4 +1,5 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import { createTheme, ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 
 interface ThemeAction {
   type: string;
@@ -16,15 +17,44 @@ function ThemeProvider ({ children }: { children: JSX.Element }) {
         case "toggle": {
           return state === "dark" ? "light" : "dark";
         }
+        case "set": {
+          console.log(action.theme);
+          return action.theme;
+        }
         default:
           return state;
       }
     }, "light");
 
+  useEffect(() => {
+    document.addEventListener("switchThemeMode", (e) => {
+      const event = e as CustomEvent;
+      if (event.detail === "dark") {
+        themeDispatch({ type: "set", theme: "dark" });
+      } else if (event.detail === "light") {
+        themeDispatch({ type: "set", theme: "light" });
+      }
+    });
+  }, []);
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark"
+    }
+  });
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light"
+    }
+  });
+
   return (
     <ThemeContext.Provider value={themeMode}>
       <ThemeDispatchContext.Provider value={themeDispatch}>
-        {children}
+        <MUIThemeProvider theme={ themeMode === "dark" ? darkTheme : lightTheme}>
+          {children}
+        </MUIThemeProvider>
       </ThemeDispatchContext.Provider>
     </ThemeContext.Provider>
   );

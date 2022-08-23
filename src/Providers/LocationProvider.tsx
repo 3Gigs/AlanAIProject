@@ -14,6 +14,12 @@ function LocationProvider ({ children }: { children: JSX.Element }) {
       case "/dashboard":
         setLocation("Dashboard");
         break;
+      case "/login":
+        setLocation("Login");
+        break;
+      case "/logout":
+        setLocation("Logout");
+        break;
       default:
         throw new Error("Invalid pathname!");
     }
