@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ThemeContext } from "../Providers/ThemeProvider";
 import { useAppDispatch } from "../reduxStore";
 import { ICalendarEvent } from "./Calendar";
 import { deleteEvent } from "./calendarSlice";
@@ -13,6 +15,7 @@ function ModalEventBox ({ visible, event, onCloseClick }: Props) {
   const dateStart = new Date(event.start);
   const dateEnd = new Date(event.end);
   const dispatch = useAppDispatch();
+  const themeMode = useContext(ThemeContext);
 
   function handleClickDelete () {
     onCloseClick();
@@ -21,7 +24,7 @@ function ModalEventBox ({ visible, event, onCloseClick }: Props) {
 
   return (
     <div className="Modal" style={{ display: visible ? "inline" : "none" }}>
-      <div className="EventManageBox_Modal">
+      <div className={themeMode === "dark" ? "EventManageBox_Modal_Dark" : "EventManageBox_Modal_Light"}>
           <div className="EventManagerActionMenu">
               <span onClick={handleClickDelete} className="EventManagerActionButton material-symbols-outlined">
                   delete

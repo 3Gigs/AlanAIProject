@@ -69,12 +69,23 @@ $rect-shadow-box: -2px -1px 3px rgb(0, 0, 0, .5), 3px 3px 3px rgb(0, 0, 0, .5);
   color: globals.$font-dark;
 }
 
-.EventManageBox_Modal {
+.EventManageBox_Modal_Light {
   @extend %EventManageBox;
   width: calc(max(20%, 400px));
   left: 40vw;
   top: 25%;
   margin: auto;
+  background-color: white;
+}
+
+.EventManageBox_Modal_Dark {
+  @extend %EventManageBox;
+  width: calc(max(20%, 400px));
+  left: 40vw;
+  top: 25%;
+  margin: auto;
+  color: globals.$font-dark;
+  background-color: globals.$background-slate;
 }
 
 .Modal {
