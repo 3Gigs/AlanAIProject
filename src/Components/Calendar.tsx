@@ -72,7 +72,7 @@ function Calendar () {
         getEvents().then(e => {
           e.forEach((val) => {
             console.log(val);
-            const result = e.find(i => i.title === event.detail);
+            const result = e.find(i => i.title.toLowerCase() === event.detail.toLowerCase());
             if (result) {
               setCurrentEventInfo(result);
               setModalEventManager(true);

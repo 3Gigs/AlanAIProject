@@ -37,6 +37,7 @@ export const initAlanBtn = () => {
             break;
           case "viewEvent":
             document.dispatchEvent(new CustomEvent("calendarViewEvent", { detail: commandData.title }));
+            console.log("Viewing event: " + commandData.title);
             break;
           case "closeEvent":
             document.dispatchEvent(new Event("calendarCloseEvent"));
